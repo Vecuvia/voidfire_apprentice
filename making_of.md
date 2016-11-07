@@ -9,8 +9,107 @@ As I already have too many side projects, I decided to start yet another one - t
 
 After sketching out the story in my journal, I set up the folder structure for the project: inside the `[2016-11-07] voidfire_apprentice` folder I created five more folders, `css`, `data`, `dist` (for libraries), `js` and `writing`.
 
-I found and downloaded in `dist` the libraries that I would be using - Zepto, Marked and Mustache, created two minimal `index.html` and `main.css` files, inizialized a git repository and added a `.gitignore` file.
+I found and downloaded in `dist` the libraries that I would be using - Zepto, Marked and Mustache, created two minimal `index.html` and `main.css` files, initialized a git repository and added a `.gitignore` file.
 
+Once I was satisfied with the layout of my page, I started writing the js that would make up the engine of my game. I needed a way to get input from the player, to handle their commands and to scroll the page.
 
+```javascript
+//js/main.js
+$("#command").on("keydown", function (event) {
+  if (event.keyCode === 13) {
+    $("#story").append(
+      $("<p>").append($("<em>").text(event.target.value))
+    );
+    Handlers[game.handler](game, event.target.value);
+    event.target.value = "";
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+});
+```
 
+To avoid the player being confused when confronted with the page, I made it so the input box would be focused on page load.
 
+```javascript
+//js/main.js
+$("#command").focus();
+```
+
+Finally, I wrote and called the initializer function, showed the game banner and added a check to allow for loading of a saved game.
+
+```javascript
+//data/main.js
+function initialize_game_data () {
+  return {
+    handler: "handle_command"
+  }
+}
+
+//js/common.js
+
+function show_banner () {
+  out("# " + GAME_NAME + "\n\n" + GAME_DESCRIPTION + "\n\n**IFID:** " + 
+      IFID + "  \n**Version:** " + VERSION);
+}
+
+function introduction () {
+  out(GAME_INTRODUCTION);
+}
+
+//js/main.js
+var game = initialize_game_data();
+
+show_game_banner();
+
+if (localStorage["voidfire-save"]) {
+  out("A saved game was found. Do you want to load it?");
+  game.handler = "confirm_load";
+} else {
+  introduction();
+}
+```
+
+Now I needed to write out the handlers and the `out` function - I was going to leverage Marked to use markdown for my text output.
+
+```javascript
+//js/common.js
+function out (text, box) {
+  if (box === undefined) {
+    box = "<div>";
+  }
+  $("#story").append($(box).html(marked(text)));
+}
+
+var Handlers = {}
+
+Handlers.confirm_save = function (game, command) {
+  switch (command.toLowerCase()) {
+    case "y": case "yes":
+      load_game();
+      break;
+    case "n": case "no":
+      introduction();
+      game.handler = "handle_command";
+      break;
+  }
+}
+```
+
+While the `confirm_save` handler was pretty easy to write, the `handle_command` one was a bit more complex. I needed to iterate through the list of commands (contained in the `data/commands.js` file), compile and execute the regex associated with each command and, if it matches, dispatch its `execute` function. If no command is matched, the handler will reply with a smart and very useful "Uh?".
+
+```javascript
+Handlers.handle_command = function (game, command) {
+  var executed = false;
+  for (var i = 0; i < Commands.length; i++) {
+    var re = new RegExp(Commands[i].pattern, "i");
+    var captures = re.exec(command);
+    if (captures) {
+      Commands[i].execute(game, captures);
+      executed = true;
+      break;
+    }
+  }
+  if (!executed) {
+    out("Uh?");
+  }
+}
+```
