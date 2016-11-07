@@ -6,7 +6,7 @@ show_banner();
 
 //If a saved game is found, ask the player whether they want to load it.
 //Otherwise, go straight to the introduction.
-if (localStorage["voidfire-save"]) {
+if (localStorage[GAME_SAVE_SLOT]) {
   out("A saved game was found. Do you want to load it?");
   game.handler = "confirm_load";
 } else {
