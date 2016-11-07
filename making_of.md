@@ -114,6 +114,40 @@ Handlers.handle_command = function (game, command) {
 }
 ```
 
+I then proceeded to write out some utility functions for looking and moving the player from room to room. Looking was easy, albeit a bit verbose - I iterate through all the mobs and items in the game and, if they are in the same room as the player (`game.player`) and are not scenery/not the player itself, they are appended to the description of the room.
+
+```javascript
+function look (game) {
+  var position = Mobs[game.player].position;
+  var room = Rooms[position];
+  var desc = "";
+  desc += "## " + room.name + "\n\n";
+  desc += room.description + "\n\n";
+  for (var mob in Mobs) {
+    if (mob !== game.player && Mobs[mob].position === position) {
+      desc += Mobs[mob].short_description + "\n\n";
+    }
+  }
+  desc += "\n\n";
+  for (var item in Items) {
+    if (Items[item].position === position && !Items[item].scenery) {
+      desc += Items[item].short_description + "\n\n";
+    }
+  }
+  left(room.name);
+  out(desc);
+}
+```
+
+Moving the player was even easier, requiring just two lines of code to change their position and to invoke the `look` function.
+
+```javascript
+function goto (game, room) {
+  Mobs[game.player].position = room;
+  look(game);
+}
+```
+
 Once the basic framework was laid down I proceeded to create minimal files for commands, rooms, items and mobs.
 
 ```javascript
@@ -163,4 +197,4 @@ Mob.DummyMob = {
 };
 ```
 
-This done, sketching out the rest of the world was easy, just a matter of coming up with the appropriate descriptions.
+This done, sketching out the rest of the world was easier, just a matter of coming up with the appropriate descriptions.
