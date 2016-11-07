@@ -120,6 +120,20 @@ Handlers.handle_command = function (game, command) {
 }
 ```
 
+The `turn_passes` function is a simple one - it just has to iterate through all the objects in the game world to invoke their `each_turn` function (if they have one).
+
+```javascript
+function turn_passes (game) {
+  game.turns += 1;
+  for (var item in Items) {
+    (Items[item].each_turn || no_op)(game);
+  }
+  for (var mob in Mobs) {
+    (Mobs[mob].each_turn || no_op)(game);
+  }
+}
+```
+
 I then proceeded to write out some utility functions for looking and moving the player from room to room. Looking was easy, albeit a bit verbose - I iterate through all the mobs and items in the game and, if they are in the same room as the player (`game.player`) and are not scenery/not the player itself, they are appended to the description of the room.
 
 ```javascript
