@@ -10,7 +10,7 @@ GAME_SAVE_SLOT = "voidfire-save";
 //Initializes the game world
 function initialize_game_data () {
   return {
-  	player: "Player",
+    player: "Player",
     handler: "handle_command"
   }
 }
