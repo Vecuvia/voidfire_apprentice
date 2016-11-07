@@ -14,3 +14,13 @@ function initialize_game_data () {
     handler: "handle_command"
   }
 }
+
+//Saves the game world
+function save_game (game) {
+  //TODO
+}
+
+//Loads the game world
+function load_game (game) {
+  //TODO
+}

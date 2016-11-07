@@ -1,13 +1,3 @@
-//Saves the game world
-function save_game (game) {
-  //TODO
-}
-
-//Loads the game world
-function load_game (game) {
-  //TODO
-}
-
 //Appends `text` to the `#story` element, after parsing it with marked, 
 // wrapping it with a tag `box` (defaulting to `<div>` if nothing is 
 // specified).
