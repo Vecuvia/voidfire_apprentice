@@ -113,3 +113,41 @@ Handlers.handle_command = function (game, command) {
   }
 }
 ```
+
+Once the basic framework was laid down I proceeded to create minimal files for commands, rooms, items and mobs.
+
+```javascript
+//data/commands.js
+var Commands = [];
+
+Commands.push({
+  pattern: "^dummy$",
+  execute: function (game, captures) {
+    out(captures.join("; "));
+  }
+});
+
+//data/rooms.js
+var Rooms = {};
+
+Rooms.DummyRoom = {
+  name: "Dummy room",
+  keywords: ["dummy", "dummy room"],
+  description: "It's a room full of dummies.",
+  exits: {}
+};
+
+//data/items.js
+var Items = {};
+
+//data/mobs.js
+var Mobs = {};
+
+Mob.DummyMob = {
+    position: "DummyRoom",
+    name: "",
+    keywords: ["dummy", "mob", "dummy mob"],
+    short_description: "A dummy mob is standing here.",
+    description: "It's just a dummy mob."
+};
+```

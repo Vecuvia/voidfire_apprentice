@@ -10,7 +10,7 @@ if (localStorage[GAME_SAVE_SLOT]) {
   out("A saved game was found. Do you want to load it?");
   game.handler = "confirm_load";
 } else {
-  introduction();
+  introduction(game);
 }
 
 //Listen to commands

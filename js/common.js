@@ -1,10 +1,10 @@
 //Saves the game world
-function save_game () {
+function save_game (game) {
   //TODO
 }
 
 //Loads the game world
-function load_game () {
+function load_game (game) {
   //TODO
 }
 
@@ -19,13 +19,23 @@ function out (text, box) {
 }
 
 //Shows the game banner
-function show_banner () {
+function show_banner (game) {
   out("# " + GAME_NAME + "\n\n" + GAME_DESCRIPTION + "\n\n**IFID:** " + IFID + "  \n**Version:** " + VERSION);
 }
 
 //Shows the game introduction
-function introduction () {
+function introduction (game) {
   out(GAME_INTRODUCTION);
+  look (game);
+}
+
+//Describes the current room
+function look (game) {
+  var room = Rooms[Mobs[game.player].position];
+  var desc = "";
+  desc += "## " + room.name + "\n\n";
+  desc += room.description;
+  out(desc);
 }
 
 //The various command handlers
@@ -34,10 +44,10 @@ var Handlers = {}
 Handlers.confirm_save = function (game, command) {
   switch (command.toLowerCase()) {
     case "y": case "yes":
-      load_game();
+      load_game(game);
       break;
     case "n": case "no":
-      introduction();
+      introduction(game);
       game.handler = "handle_command";
       break;
   }
