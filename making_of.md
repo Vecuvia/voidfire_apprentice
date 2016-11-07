@@ -96,20 +96,26 @@ Handlers.confirm_save = function (game, command) {
 
 While the `confirm_save` handler was pretty easy to write, the `handle_command` one was a bit more complex. I needed to iterate through the list of commands (contained in the `data/commands.js` file), compile and execute the regex associated with each command and, if it matches, dispatch its `execute` function. If no command is matched, the handler will reply with a smart and very useful "Uh?".
 
+Each command will return the number of turns elapsed (if `undefined` is returned it will be coerced to 0), and for every turn the `turn_passes` function will be invoked - thus making the world tick.
+
 ```javascript
 Handlers.handle_command = function (game, command) {
-  var executed = false;
+  var executed = false, elapsed;
   for (var i = 0; i < Commands.length; i++) {
     var re = new RegExp(Commands[i].pattern, "i");
     var captures = re.exec(command);
     if (captures) {
-      Commands[i].execute(game, captures);
+      elapsed = Commands[i].execute(game, captures) || 0;
       executed = true;
       break;
     }
   }
   if (!executed) {
     out("Uh?");
+  } else {
+    for (var i = 0; i < elapsed; i++) {
+      turn_passes(game);
+    }
   }
 }
 ```

@@ -61,6 +61,20 @@ function goto (game, room) {
   look(game);
 }
 
+//No-op function
+function no_op () {}
+
+//Makes the world tick
+function turn_passes (game) {
+  game.turns += 1;
+  for (var item in Items) {
+    (Items[item].each_turn || no_op)(game);
+  }
+  for (var mob in Mobs) {
+    (Mobs[mob].each_turn || no_op)(game);
+  }
+}
+
 //The various command handlers
 var Handlers = {}
 
@@ -77,17 +91,21 @@ Handlers.confirm_save = function (game, command) {
 }
 
 Handlers.handle_command = function (game, command) {
-  var executed = false;
+  var executed = false, elapsed;
   for (var i = 0; i < Commands.length; i++) {
     var re = new RegExp(Commands[i].pattern, "i");
     var captures = re.exec(command);
     if (captures) {
-      Commands[i].execute(game, captures);
+      elapsed = Commands[i].execute(game, captures) || 0;
       executed = true;
       break;
     }
   }
   if (!executed) {
     out("Uh?");
+  } else {
+    for (var i = 0; i < elapsed; i++) {
+      turn_passes(game);
+    }
   }
 }

@@ -11,7 +11,8 @@ GAME_SAVE_SLOT = "voidfire-save";
 function initialize_game_data () {
   return {
     player: "Player",
-    handler: "handle_command"
+    handler: "handle_command",
+    turns: 0
   }
 }
 

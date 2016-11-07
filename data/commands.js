@@ -1,8 +1,11 @@
 var Commands = [];
 
+//Commands must return the number of minutes elapsed. `undefined` will be
+// treated as 0.
+
 //Look command - simply invoke the `look` function
 Commands.push({
-  pattern: "^l|look$",
+  pattern: "^(l|look)$",
   execute: function (game, captures) {
     look(game);
   }
@@ -39,10 +42,11 @@ Commands.push({
         if (Items[item].gettable) {
           Items[item].position = game.player;
           out("You pick up " + Items[item].article + " " + Items[item].name + ".");
+          return 1;
         } else {
           out("You can't pick up " + Items[item].article + " " + Items[item].name + ", it's fixed in place.");
+          return;
         }
-        return;
       }
     }
     out("You don't see that here.");
@@ -58,7 +62,7 @@ Commands.push({
       if (Items[item].position === game.player && Items[item].keywords.includes(dropped)) {
         Items[item].position = Mobs[game.player].position;
         out("You drop " + Items[item].article + " " + Items[item].name + ".");
-        return;
+        return 1;
       }
     }
     out("You aren't carrying that.");
@@ -89,6 +93,7 @@ Commands.push({
   execute: function (game, captures) {
     if (Items.Broom.position === game.player) {
       out("You sweep the floor of the room.");
+      return 5;
     } else {
       out("You aren't carrying anything to clean with.");
     }
@@ -119,6 +124,7 @@ Commands.push({
     if (direction in Rooms[position].exits) {
       out("You go " + direction + ".");
       goto(game, Rooms[position].exits[direction]);
+      return 1;
     } else {
       out("You can't go in that direction.");
     }
