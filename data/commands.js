@@ -45,6 +45,7 @@ Commands.push({
           var subject = Mobs[mob].conversation[i];
           if (subject.keywords.includes(topic) && subject.check(game)) {
             if (!Mobs[mob].topics.includes(subject.name)) {
+              Mobs[mob].topics.push(subject.name);
               subject.first_time(game);
             } else {
               subject.following(game);
