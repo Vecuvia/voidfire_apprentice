@@ -161,3 +161,5 @@ Mob.DummyMob = {
     description: "It's just a dummy mob."
 };
 ```
+
+This done, sketching out the rest of the world was easy, just a matter of coming up with the appropriate descriptions.

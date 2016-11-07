@@ -18,6 +18,16 @@ function out (text, box) {
   $("#story").append($(box).html(marked(text)));
 }
 
+//Updates the left hand of the status bar
+function left (text) {
+  $("#left").html(text);
+}
+
+//Updates the right hand of the status bar
+function right (text) {
+  $("#right").html(text);
+}
+
 //Shows the game banner
 function show_banner (game) {
   out("# " + GAME_NAME + "\n\n" + GAME_DESCRIPTION + "\n\n**IFID:** " + IFID + "  \n**Version:** " + VERSION);
@@ -26,7 +36,7 @@ function show_banner (game) {
 //Shows the game introduction
 function introduction (game) {
   out(GAME_INTRODUCTION);
-  look (game);
+  look(game);
 }
 
 //Describes the current room
@@ -47,7 +57,14 @@ function look (game) {
       desc += Items[item].short_description + "\n\n";
     }
   }
+  left(room.name);
   out(desc);
+}
+
+//Jumps to a new room
+function goto (game, room) {
+  Mobs[game.player].position = room;
+  look(game);
 }
 
 //The various command handlers

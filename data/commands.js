@@ -31,8 +31,9 @@ Commands.push({
 
 //Goto command
 Commands.push({
-  pattern: "^(go\\s+)?((north|n|south|s|east|e|west|w|up|u|down|d)(?!\\w+)|to\\s+(\\w+)|\\w+)$",
+  pattern: "^(go\\s+)?((north|n|south|s|east|e|west|w|up|u|down|d)(?!\\w+)|to\\s+(\\w+))$",
   execute: function (game, captures) {
+    //Is it a cardinal direction, or are we looking for an adjacent room?
     var cardinal = !captures[4];
     var direction = captures[4] || captures[3];
     var position = Mobs[game.player].position;
@@ -51,8 +52,7 @@ Commands.push({
     }
     if (direction in Rooms[position].exits) {
       out("You go " + direction + ".");
-      Mobs[game.player].position = Rooms[position].exits[direction];
-      look(game);
+      goto(game, Rooms[position].exits[direction]);
     } else {
       out("You can't go in that direction.");
     }
