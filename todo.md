@@ -13,9 +13,15 @@
   - [x] 2016-11-07T18:37 2016-11-07T18:35 `look` command
   - [x] 2016-11-07T18:58 2016-11-07T18:37 `look at`/`examine` command
   - [x] 2016-11-07T19:12 2016-11-07T18:37 `go` command
+    - [ ] 2016-11-07T22:09 Handle `go back`
   - [x] 2016-11-07T19:47 2016-11-07T18:38 `get`/`take` command
   - [x] 2016-11-07T19:47 2016-11-07T18:38 `drop`/`leave` command
   - [x] 2016-11-07T19:31 2016-11-07T19:14 `inventory` command
 - Rooms
+  - [ ] 2016-11-07T22:10 Second floor staircase
+  - [ ] 2016-11-07T22:10 First floor staircase
+  - [ ] 2016-11-07T22:10 Your quarters
+  - [ ] 2016-11-07T22:10 Ground floor
+  - [ ] 2016-11-07T22:11 Third floor - Library
 - Items
 - Mobs
