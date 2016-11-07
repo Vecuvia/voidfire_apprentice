@@ -31,10 +31,22 @@ function introduction (game) {
 
 //Describes the current room
 function look (game) {
-  var room = Rooms[Mobs[game.player].position];
+  var position = Mobs[game.player].position;
+  var room = Rooms[position];
   var desc = "";
   desc += "## " + room.name + "\n\n";
-  desc += room.description;
+  desc += room.description + "\n\n";
+  for (var mob in Mobs) {
+    if (mob !== game.player && Mobs[mob].position === position) {
+      desc += Mobs[mob].short_description + "\n\n";
+    }
+  }
+  desc += "\n\n";
+  for (var item in Items) {
+    if (Items[item].position === position && !Items[item].scenery) {
+      desc += Items[item].short_description + "\n\n";
+    }
+  }
   out(desc);
 }
 

@@ -140,12 +140,22 @@ Rooms.DummyRoom = {
 //data/items.js
 var Items = {};
 
+Items.DummyItem = {
+  position: "DummyRoom",
+  name: "dummy item",
+  keywords: ["dummy item", "item"],
+  scenery: false,
+  gettable: true,
+  short_description: "There's a dummy item here.",
+  description: "It's simply a dummy item."
+};
+
 //data/mobs.js
 var Mobs = {};
 
 Mob.DummyMob = {
     position: "DummyRoom",
-    name: "",
+    name: "dummy mob",
     keywords: ["dummy", "mob", "dummy mob"],
     short_description: "A dummy mob is standing here.",
     description: "It's just a dummy mob."
