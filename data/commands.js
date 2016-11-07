@@ -21,7 +21,7 @@ Commands.push({
       }
     }
     for (var item in Items) {
-      if (Items[item].position === position && Items[item].keywords.includes(examined)) {
+      if ((Items[item].position === position || Items[item].position === game.player) && Items[item].keywords.includes(examined)) {
         out(Items[item].description);
         return;
       }
@@ -81,6 +81,17 @@ Commands.push({
       inv += "> Nothing";
     }
     out(inv);
+  }
+});
+
+Commands.push({
+  pattern: "^sweep|clean|wipe$",
+  execute: function (game, captures) {
+    if (Items.Broom.position === game.player) {
+      out("You sweep the floor of the room.");
+    } else {
+      out("You aren't carrying anything to clean with.");
+    }
   }
 });
 

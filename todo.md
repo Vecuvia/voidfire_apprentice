@@ -5,7 +5,7 @@
 - [ ] 2016-11-07T05:36 Add Mustache to `dist/`
 - [x] 2016-11-07T18:34 2016-11-07T05:36 Sketch out the engine in `js/`
   - [x] 2016-11-07T18:34 2016-11-07T05:53 Multi-word commands with regexes
-- [ ] 2016-11-07T05:37 Create the `index.html` file
+- [x] 2016-11-07T19:47 2016-11-07T05:37 Create the `index.html` file
 - [ ] 2016-11-07T05:37 Create the build file
 - [x] 2016-11-07T18:34 2016-11-07T05:44 Start writing an article in `making_of.md`
 - [x] 2016-11-07T05:49 2016-11-07T05:48 Make a `writing/` folder and start jotting down ideas and descriptions for the rooms
@@ -13,8 +13,8 @@
   - [x] 2016-11-07T18:37 2016-11-07T18:35 `look` command
   - [x] 2016-11-07T18:58 2016-11-07T18:37 `look at`/`examine` command
   - [x] 2016-11-07T19:12 2016-11-07T18:37 `go` command
-  - [ ] 2016-11-07T18:38 `get`/`take` command
-  - [ ] 2016-11-07T18:38 `drop`/`leave` command
+  - [x] 2016-11-07T19:47 2016-11-07T18:38 `get`/`take` command
+  - [x] 2016-11-07T19:47 2016-11-07T18:38 `drop`/`leave` command
   - [x] 2016-11-07T19:31 2016-11-07T19:14 `inventory` command
 - Rooms
 - Items

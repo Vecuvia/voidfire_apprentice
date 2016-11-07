@@ -15,7 +15,7 @@ Items.Broom = {
   position: "TowerMageQuarters",
   article: "a",
   name: "broom",
-  keywords: ["broom", "besom"],
+  keywords: ["broom", "straw", "straw broom", "besom"],
   scenery: false,
   gettable: true,
   short_description: "A broom has been left here, leaning against a wall.",
