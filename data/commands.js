@@ -29,6 +29,42 @@ Commands.push({
   }
 });
 
+//Get command
+Commands.push({
+  pattern: "^(g|get|take|pick\\s+up)\\s+(\\w+)$",
+  execute: function (game, captures) {
+    var taken = captures[2];
+    for (var item in Items) {
+      if (Items[item].position === Mobs[game.player].position && Items[item].keywords.includes(taken)) {
+        if (Items[item].gettable) {
+          Items[item].position = game.player;
+          out("You pick up " + Items[item].article + " " + Items[item].name + ".");
+        } else {
+          out("You can't pick up " + Items[item].article + " " + Items[item].name + ", it's fixed in place.");
+        }
+        return;
+      }
+    }
+    out("You don't see that here.");
+  }
+});
+
+//Drop command
+Commands.push({
+  pattern: "^(drop|leave|throw\\s+away)\\s+(\\w+)$",
+  execute: function (game, captures) {
+    var dropped = captures[2];
+    for (var item in Items) {
+      if (Items[item].position === game.player && Items[item].keywords.includes(dropped)) {
+        Items[item].position = Mobs[game.player].position;
+        out("You drop " + Items[item].article + " " + Items[item].name + ".");
+        return;
+      }
+    }
+    out("You aren't carrying that.");
+  }
+});
+
 //Inventory command
 Commands.push({
   pattern: "^i|inv|inventory$",

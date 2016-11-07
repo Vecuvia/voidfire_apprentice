@@ -142,6 +142,7 @@ var Items = {};
 
 Items.DummyItem = {
   position: "DummyRoom",
+  article: "a",
   name: "dummy item",
   keywords: ["dummy item", "item"],
   scenery: false,
