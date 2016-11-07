@@ -67,7 +67,7 @@ Commands.push({
 
 //Inventory command
 Commands.push({
-  pattern: "^i|inv|inventory$",
+  pattern: "^(i|inv|inventory)$",
   execute: function (game, captures) {
     var inv = "You are carrying:\n\n";
     var empty = true;
@@ -85,7 +85,7 @@ Commands.push({
 });
 
 Commands.push({
-  pattern: "^sweep|clean|wipe$",
+  pattern: "^(sweep|clean|wipe)$",
   execute: function (game, captures) {
     if (Items.Broom.position === game.player) {
       out("You sweep the floor of the room.");
