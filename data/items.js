@@ -2,6 +2,7 @@ var Items = {};
 
 Items.CanopyBed = {
   position: "TowerMageQuarters",
+  article: "a",
   name: "canopy bed",
   keywords: ["canopy", "bed", "canopy bed", "master's bed"],
   scenery: true,
@@ -12,6 +13,7 @@ Items.CanopyBed = {
 
 Items.DummyItem = {
   position: "DummyRoom",
+  article: "a",
   name: "dummy item",
   keywords: ["dummy item", "item"],
   scenery: false,

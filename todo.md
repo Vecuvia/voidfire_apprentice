@@ -15,7 +15,7 @@
   - [x] 2016-11-07T19:12 2016-11-07T18:37 `go` command
   - [ ] 2016-11-07T18:38 `get`/`take` command
   - [ ] 2016-11-07T18:38 `drop`/`leave` command
-  - [ ] 2016-11-07T19:14 `inventory` command
+  - [x] 2016-11-07T19:31 2016-11-07T19:14 `inventory` command
 - Rooms
 - Items
 - Mobs

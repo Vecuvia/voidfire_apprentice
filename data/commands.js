@@ -29,6 +29,25 @@ Commands.push({
   }
 });
 
+//Inventory command
+Commands.push({
+  pattern: "^i|inv|inventory$",
+  execute: function (game, captures) {
+    var inv = "You are carrying:\n\n";
+    var empty = true;
+    for (var item in Items) {
+      if (Items[item].position === game.player) {
+        inv += " - " + Items[item].article + " " + Items[item].name + "\n";
+        var empty = false;
+      }
+    }
+    if (empty) {
+      inv += "> Nothing";
+    }
+    out(inv);
+  }
+});
+
 //Goto command
 Commands.push({
   pattern: "^(go\\s+)?((north|n|south|s|east|e|west|w|up|u|down|d)(?!\\w+)|to\\s+(\\w+))$",

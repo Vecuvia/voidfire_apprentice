@@ -47,16 +47,20 @@ function look (game) {
   desc += "## " + room.name + "\n\n";
   desc += room.description + "\n\n";
   for (var mob in Mobs) {
+    //Add to `desc` the short description of each mob in the same room.
     if (mob !== game.player && Mobs[mob].position === position) {
       desc += Mobs[mob].short_description + "\n\n";
     }
   }
   desc += "\n\n";
   for (var item in Items) {
+    //Add to `desc` the short description of each non-scenery item in the
+    // same room.
     if (Items[item].position === position && !Items[item].scenery) {
       desc += Items[item].short_description + "\n\n";
     }
   }
+  //TODO: possibly move this to `handle_command`
   left(room.name);
   out(desc);
 }
