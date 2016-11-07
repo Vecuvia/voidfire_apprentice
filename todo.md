@@ -25,3 +25,5 @@
   - [ ] 2016-11-07T22:11 Third floor - Library
 - Items
 - Mobs
+- [ ] 2016-11-07T23:01 Add scenes
+- [ ] 2016-11-07T23:01 Add hints

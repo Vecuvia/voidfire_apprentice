@@ -13,7 +13,7 @@ Commands.push({
 
 //Examine/look at command
 Commands.push({
-  pattern: "^(x|look\\s+at|examine)\\s+(\\w+)$",
+  pattern: "^(x|look\\s+at|examine)\\s+(.+)$",
   execute: function (game, captures) {
     var examined = captures[2];
     var position = Mobs[game.player].position;
@@ -29,12 +29,44 @@ Commands.push({
         return;
       }
     }
+    out("You don't see that here.");
+  }
+});
+
+//Say command
+Commands.push({
+  pattern: "^(say|tell|ask)\\s+(.+)\\s+to\\s+(.+)$",
+  execute: function (game, captures) {
+    var topic = captures[2];
+    var target = captures[3];
+    for (var mob in Mobs) {
+      if (Mobs[mob].position === Mobs[game.player].position && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
+        for (var i = 0; i < Mobs[mob].conversation.length; i++) {
+          var subject = Mobs[mob].conversation[i];
+          if (subject.keywords.includes(topic) && subject.check(game)) {
+            if (!Mobs[mob].topics.includes(subject.name)) {
+              subject.first_time(game);
+            } else {
+              subject.following(game);
+            }
+            return 1;
+          }
+        }
+        out(Pronouns[Mobs[mob].pronoun].subject.capitalizeFirstLetter() + " doesn't seem to know anything about that. You could ask " + Pronouns[Mobs[mob].pronoun].object + " about " + Mobs[mob].conversation.filter(function (item) {
+          return item.check(game);
+        }).map(function (item) {
+          return item.description;
+        }).betterJoin(", ", ", or ") + ".");
+        return 1;
+      }
+    }
+    out("You don't see them here.");
   }
 });
 
 //Get command
 Commands.push({
-  pattern: "^(g|get|take|pick\\s+up)\\s+(\\w+)$",
+  pattern: "^(g|get|take|pick\\s+up)\\s+(.+)$",
   execute: function (game, captures) {
     var taken = captures[2];
     for (var item in Items) {
@@ -55,7 +87,7 @@ Commands.push({
 
 //Drop command
 Commands.push({
-  pattern: "^(drop|leave|throw\\s+away)\\s+(\\w+)$",
+  pattern: "^(drop|leave|throw\\s+away)\\s+(.+)$",
   execute: function (game, captures) {
     var dropped = captures[2];
     for (var item in Items) {
@@ -102,7 +134,7 @@ Commands.push({
 
 //Goto command
 Commands.push({
-  pattern: "^(go\\s+)?((north|n|south|s|east|e|west|w|up|u|down|d)(?!\\w+)|to\\s+(\\w+))$",
+  pattern: "^(go\\s+)?((north|n|south|s|east|e|west|w|up|u|down|d)(?!.+)|to\\s+(.+))$",
   execute: function (game, captures) {
     //Is it a cardinal direction, or are we looking for an adjacent room?
     var cardinal = !captures[4];

@@ -6,3 +6,24 @@ var DirectionAliases = {
   u: "up",
   d: "down"
 }
+
+var Pronouns = {
+  you: {
+  	subject: "you",
+  	object: "you",
+  	possessive: "your",
+  	reflexive: "yourself"
+  },
+  it: {
+  	subject: "it",
+  	object: "it",
+  	possessive: "its",
+  	reflexive: "itself"
+  },
+  they: {
+  	subject: "they",
+  	object: "them",
+  	possessive: "theirs",
+  	reflexive: "themselves"
+  }
+}

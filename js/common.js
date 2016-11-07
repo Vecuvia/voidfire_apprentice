@@ -1,3 +1,19 @@
+String.prototype.capitalizeFirstLetter = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+Array.prototype.betterJoin = function (middle, last) {
+  var string = "";
+  for (var i = 0; i < this.length - 1; i++) {
+    string += this[i];
+    if (i < this.length - 2) {
+      string += middle;
+    }
+  }
+  string += last + this[this.length-1];
+  return string;
+}
+
 //Appends `text` to the `#story` element, after parsing it with marked, 
 // wrapping it with a tag `box` (defaulting to `<div>` if nothing is 
 // specified).
@@ -63,6 +79,9 @@ function goto (game, room) {
 
 //No-op function
 function no_op () {}
+
+//Always returns true
+function always_true () { return true; }
 
 //Makes the world tick
 function turn_passes (game) {
