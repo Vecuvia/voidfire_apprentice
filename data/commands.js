@@ -24,7 +24,7 @@ Commands.push({
       }
     }
     for (var item in Items) {
-      if (visible(Mobs[mob]) && Items[item].keywords.includes(examined)) {
+      if (visible(Items[item]) && Items[item].keywords.includes(examined)) {
         out(Items[item].description);
         return;
       }
