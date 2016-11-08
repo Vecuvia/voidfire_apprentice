@@ -6,7 +6,7 @@ Scenes.CleaningUp = {
   start: always_false,
   on_start: no_op,
   end: function (game) {
-    return Scenes.Familiar.running;
+    return Scenes.Familiar.start(game);
   },
   on_end: no_op,
   each_turn: no_op,
