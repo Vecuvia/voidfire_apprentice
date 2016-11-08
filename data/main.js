@@ -27,7 +27,7 @@ function load_game (game) {
 }
 
 //Updates the status bar
-function update_status_bar (game) {
+function update_statusbar (game) {
   left(Rooms[Mobs[game.player].position].name);
   right("Healthy");
 }
