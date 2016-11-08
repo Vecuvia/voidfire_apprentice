@@ -100,7 +100,7 @@ function goto (game, room) {
 }
 
 //(tries to) move a mob
-function move_mob (mob, direction) = {
+function move_mob (mob, direction) {
   if (Rooms[mob.position][direction]) {
     if (visible(mob)) {
       out(mob.article.capitalizeFirstLetter() + mob.name + " goes " + direction + ".");
