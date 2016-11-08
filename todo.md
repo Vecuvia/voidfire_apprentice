@@ -6,7 +6,7 @@
 - [x] 2016-11-07T18:34 2016-11-07T05:36 Sketch out the engine in `js/`
   - [x] 2016-11-07T18:34 2016-11-07T05:53 Multi-word commands with regexes
 - [x] 2016-11-07T19:47 2016-11-07T05:37 Create the `index.html` file
-- [ ] 2016-11-07T05:37 Create the build file
+- [x] 2016-11-08T14:32 2016-11-07T05:37 Create the build file
 - [x] 2016-11-07T18:34 2016-11-07T05:44 Start writing an article in `making_of.md`
 - [x] 2016-11-07T05:49 2016-11-07T05:48 Make a `writing/` folder and start jotting down ideas and descriptions for the rooms
 - Commands
@@ -25,7 +25,7 @@
   - [ ] 2016-11-07T22:11 Third floor - Library
 - Items
 - Mobs
-- [ ] 2016-11-07T23:01 Add scenes
+- [x] 2016-11-08T14:32 2016-11-07T23:01 Add scenes
 - [ ] 2016-11-07T23:01 Add hints
 - [x] 2016-11-08T12:40 2016-11-08T02:38 Trim command before parsing it
 - [x] 2016-11-08T12:49 2016-11-08T12:41 Refactor commands code
