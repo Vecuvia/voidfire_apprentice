@@ -101,6 +101,7 @@ Each command will return the number of turns elapsed (if `undefined` is returned
 ```javascript
 Handlers.handle_command = function (game, command) {
   var executed = false, elapsed;
+  command = command.trim();
   for (var i = 0; i < Commands.length; i++) {
     var re = new RegExp(Commands[i].pattern, "i");
     var captures = re.exec(command);

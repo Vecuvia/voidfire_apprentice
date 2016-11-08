@@ -1,7 +1,20 @@
+//Utility functions
+//No-op function, returns nothing
+function no_op () {}
+
+//Always returns true
+function always_true () { return true; }
+
+//As per the name, capitalize the first letter of a string.
 String.prototype.capitalizeFirstLetter = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+//A "better" join function, that allows one to select a joiner for the last
+// element of the array.
+//For example:
+//    > ["bread", "milk", "eggs"].betterJoin(", ", " and ")
+//    "bread, milk and eggs"
 Array.prototype.betterJoin = function (middle, last) {
   var string = "";
   for (var i = 0; i < this.length - 1; i++) {
@@ -77,15 +90,11 @@ function goto (game, room) {
   look(game);
 }
 
-//No-op function
-function no_op () {}
-
-//Always returns true
-function always_true () { return true; }
-
 //Makes the world tick
 function turn_passes (game) {
   game.turns += 1;
+  //Iterate through all the items and mobs in the game world and, if they
+  // have an `each_turn` function make them tick.
   for (var item in Items) {
     (Items[item].each_turn || no_op)(game);
   }
@@ -97,6 +106,7 @@ function turn_passes (game) {
 //The various command handlers
 var Handlers = {}
 
+//Handle loading of the saved game at the beginning
 Handlers.confirm_save = function (game, command) {
   switch (command.toLowerCase()) {
     case "y": case "yes":
@@ -109,12 +119,20 @@ Handlers.confirm_save = function (game, command) {
   }
 }
 
+//Handle commands during play
 Handlers.handle_command = function (game, command) {
   var executed = false, elapsed;
+  //To avoid problems with spurious whitespace (like the one inserted by most
+  // mobile keyboards at the end of a word) - #maybe use something more
+  // robust than a list of keywords for matching.
+  command = command.trim();
   for (var i = 0; i < Commands.length; i++) {
     var re = new RegExp(Commands[i].pattern, "i");
     var captures = re.exec(command);
     if (captures) {
+      //We have a match - go, go, go. Execute the command and get how much
+      // time it will take to perform. #maybe split this in two functions,
+      // check and execute, and invoke execute *after* advancing the world.
       elapsed = Commands[i].execute(game, captures) || 0;
       executed = true;
       break;
@@ -123,6 +141,7 @@ Handlers.handle_command = function (game, command) {
   if (!executed) {
     out("Uh?");
   } else {
+    //And finally, let's make our world tick.
     for (var i = 0; i < elapsed; i++) {
       turn_passes(game);
     }

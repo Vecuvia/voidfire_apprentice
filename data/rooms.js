@@ -26,7 +26,7 @@ Rooms.TowerSecondFloor = {
   exits: {
     south: "TowerMageQuarters"
   }
-}
+};
 
 Rooms.DummyRoom = {
   name: "Dummy room",
