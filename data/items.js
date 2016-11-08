@@ -2,13 +2,35 @@ var Items = {};
 
 Items.CanopyBed = {
   position: "TowerMageQuarters",
-  article: "a",
+  article: "the",
   name: "canopy bed",
   keywords: ["canopy", "bed", "canopy bed", "master's bed"],
   scenery: true,
   gettable: false,
   short_description: "",
-  description: "It's a huge four-poster bed with an heavy canopy, excellent to keep warm in the long night of the void."
+  description: "It's a huge four-poster bed with an heavy canopy, excellent to keep warm in the long nights of the void."
+};
+
+Items.HugeWardrobe = {
+  position: "TowerMageQuarters",
+  article: "the",
+  name: "huge wardrobe",
+  keywords: ["huge", "wardrobe", "huge wardrobe", "master's wardrobe"],
+  scenery: true,
+  gettable: false,
+  short_description: "",
+  description: "The wardrobe is huge, taking up all the space on the east wall, and locked shut."
+};
+
+Items.Fireplace = {
+  position: "TowerMageQuarters",
+  article: "the",
+  name: "fireplace",
+  keywords: ["fireplace", "roaring", "fire", "roaring fireplace"],
+  scenery: true,
+  gettable: false,
+  short_description: "",
+  description: "Set in the east wall, the fireplace is roaring, warming up the whole room."
 };
 
 Items.Broom = {

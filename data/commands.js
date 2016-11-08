@@ -161,7 +161,7 @@ Commands.push({
   execute: function (game, captures) {
     //Is it a cardinal direction, or are we looking for an adjacent room?
     var cardinal = !captures[4];
-    var direction = captures[4] || captures[3];
+    var direction = (captures[4] || captures[3]).toLowerCase();
     var position = Mobs[game.player].position;
     if (cardinal) {
       if (direction in DirectionAliases) {
