@@ -18,7 +18,7 @@
   - [x] 2016-11-07T19:47 2016-11-07T18:38 `drop`/`leave` command
   - [x] 2016-11-07T19:31 2016-11-07T19:14 `inventory` command
 - Rooms
-  - [ ] 2016-11-07T22:10 Second floor staircase
+  - [x] 2016-11-08T02:25 2016-11-07T22:10 Second floor staircase
   - [ ] 2016-11-07T22:10 First floor staircase
   - [ ] 2016-11-07T22:10 Your quarters
   - [ ] 2016-11-07T22:10 Ground floor

@@ -2,10 +2,11 @@ var Rooms = {};
 
 Rooms.TowerMageQuarters = {
   name: "Second floor - Master's quarters",
-  keywords: ["quarters"],
+  keywords: ["quarters", "bedroom"],
   description: "Your master's quarters are quite expansive, with a canopy bed in the middle of the room, an huge wardrobe, and enough lit candles to approximate sunlight. There's a small bathroom to the east and to the north you can access the central staircase.",
   exits: {
-    east: "TowerMageBathroom"
+    east: "TowerMageBathroom",
+    north: "TowerSecondFloor"
   }
 };
 
@@ -17,6 +18,15 @@ Rooms.TowerMageBathroom = {
     west: "TowerMageQuarters"
   }
 };
+
+Rooms.TowerSecondFloor = {
+  name: "Second floor - Staircase",
+  keywords: ["staircase"],
+  description: "The staircase runs along the external wall of the tower, torches keeping it well lit, going up to the library and down to your quarters. To the south a door leads to your master's quarters.",
+  exits: {
+    south: "TowerMageQuarters"
+  }
+}
 
 Rooms.DummyRoom = {
   name: "Dummy room",
