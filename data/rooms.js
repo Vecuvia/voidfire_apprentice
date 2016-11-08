@@ -82,7 +82,7 @@ Rooms.TowerLaboratory = {
 Rooms.TowerOutside = {
   name: "Outside the tower",
   keywords: ["outside"],
-  description: "@TODO The tower stands to the north.",
+  description: "You stand on a chunk of earth, the dark emptiness of the gulf between universes surrounding you on all sides. The Voidfire tower stands to the north.",
   exits: {
     north: "TowerGroundFloor"
   }

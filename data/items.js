@@ -22,6 +22,17 @@ Items.Broom = {
   description: "It's a fairly standard straw broom, with a smooth, knotted handle."
 };
 
+Items.Parcel = {
+  position: null,
+  article: "the",
+  name: "parcel",
+  keywords: ["parcel", "packet"],
+  scenery: false,
+  gettable: true,
+  short_description: "You left here the parcel for the wizard's council.",
+  description: "The parcel is not large, and tightly wrapped. You don't know what is inside."
+};
+
 Items.DummyItem = {
   position: "DummyRoom",
   article: "a",

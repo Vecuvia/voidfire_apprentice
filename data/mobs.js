@@ -61,7 +61,23 @@ Mobs.Wizard = {
     }
   },
   topics: [],
-  conversation: []
+  conversation: [
+    {
+      name: "task",
+      description: "what the task is",
+      keywords: ["what", "task", "what is the task"],
+      check: function (game) {
+        return Scenes.Familiar.ran > 0;
+      },
+      first_time: function (game) {
+        out("\"Yes, right, the task.\", he says. \"I have a parcel to deliver to the wizards' council, but I can't leave my experiment right now.\"\n\n\"You'll have to deliver it for me.\"\n\nHe hands you a small packet.");
+        Items.Parcel.position = game.player;
+      },
+      following: function (game) {
+        out("\"As I said, you'll have to deliver that parcel to the wizards' council.\"");
+      }
+    }
+  ]
 };
 
 Mobs.DummyMob = {
