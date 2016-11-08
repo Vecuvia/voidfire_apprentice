@@ -7,7 +7,7 @@ Scenes.Familiar = {
     return game.turns === 5;
   },
   on_start: function (game) {
-    if (visible("Wizard", true)) {
+    if (visible(Mobs.Wizard)) {
       out("Your master coughs, turning towards you. \"Greetings, apprentice. I have a task for you.\", he says.");
     } else {
       Mobs.WizardFamiliar.position = Mobs[game.player].position;
@@ -23,8 +23,9 @@ Scenes.Familiar = {
     return Mobs[game.player].position === "TowerLaboratory";
   },
   on_end: function (game) {
-    if (visible("WizardFamiliar", true)) {
+    if (visible(Mobs.WizardFamiliar)) {
       out("The smell of sulphur once again fills the room as your master's familiar disappears in a puff of black smoke.");
+      out("Your master coughs, turning towards you. \"Greetings, apprentice. I have a task for you.\", he says.");
       unregister_hook("post_moving", "familiar_follows");
     }
     Mobs.WizardFamiliar.position = null;

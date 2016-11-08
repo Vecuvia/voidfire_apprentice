@@ -3,7 +3,7 @@ var Rooms = {};
 Rooms.TowerMageQuarters = {
   name: "Second floor - Master's quarters",
   keywords: ["quarters", "bedroom"],
-  description: "Your master's quarters are quite expansive, with a canopy bed in the middle of the room, an huge wardrobe, and enough lit candles to approximate sunlight. There's a small bathroom to the east and to the north you can access the central staircase.",
+  description: "Your master's quarters are quite expansive, with a canopy bed in the middle of the room, an huge wardrobe, and a big fireplace. There's a bathroom to the east and to the north you can access the central staircase.",
   exits: {
     east: "TowerMageBathroom",
     north: "TowerSecondFloor"
@@ -36,6 +36,7 @@ Rooms.TowerFirstFloor = {
   description: "The staircase runs along the external wall of the tower, torches keeping it well lit, going up to your master's quarters and down to the laboratory. To the north a door leads to your quarters.",
   exits: {
     up: "TowerSecondFloor",
+    down: "TowerGroundFloor",
     north: "TowerYourBedroom"
   }
 };
@@ -55,6 +56,35 @@ Rooms.TowerLibrary = {
   description: "The library of the tower is expansive, bookshelves piled with books of every sort covering every wall. To one side there is a table surrounded by a couple of comfortable couches. You can go down to your master's quarters.",
   exits: {
     down: "TowerSecondFloor"
+  }
+};
+
+Rooms.TowerGroundFloor = {
+  name: "Ground floor - Staircase",
+  keywords: ["staircase", "ground", "ground floor", "laboratory"],
+  description: "The staircase runs along the external wall of the tower, torches keeping it well lit, going up to your quarters and down to the basement. To the north a door leads to the laboratory. Another door to the south leads outside the tower.",
+  exits: {
+    up: "TowerFirstFloor",
+    north: "TowerLaboratory",
+    south: "TowerOutside"
+  }
+};
+
+Rooms.TowerLaboratory = {
+  name: "Ground floor - Laboratory",
+  keywords: ["laboratory", "lab"],
+  description: "The laboratory of the tower is large, well-ventilated and above all cold. A large, pitted work table covered in glassware stands to one side, and there is a summoning circle inlaid in silver in the middle of the room.",
+  exits: {
+    south: "TowerGroundFloor"
+  }
+};
+
+Rooms.TowerOutside = {
+  name: "Outside the tower",
+  keywords: ["outside"],
+  description: "@TODO The tower stands to the north.",
+  exits: {
+    north: "TowerGroundFloor"
   }
 };
 

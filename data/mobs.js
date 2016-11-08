@@ -26,10 +26,10 @@ Mobs.WizardFamiliar = {
       keywords: ["where", "where is he", "where is the master"],
       check: always_true,
       first_time: function (game) {
-        out("\"He's waiting for you in the laboratory, down to the first floor.\", it says.");
+        out("\"He's waiting for you in the laboratory, down to the ground floor.\", it says.");
       },
       following: function (game) {
-        out("\"He's in the laboratory, down to the first floor.\"");
+        out("\"He's in the laboratory, down to the ground floor.\"");
       }
     },
     {
@@ -48,15 +48,15 @@ Mobs.WizardFamiliar = {
 };
 
 Mobs.Wizard = {
-  position: null,
+  position: "TowerLaboratory",
   article: "The ",
   name: "wizard",
   keywords: ["wizard", "master"],
   pronoun: "he",
-  short_description: "...",
-  description: "...",
+  short_description: "Clad in heavy blue robes, your master is busy working on some experiment.",
+  description: "He's bespectacled and balding, wearing the rich blue robes of an high level wizard.",
   each_turn: function (game) {
-    if (visible("Wizard", true) && Scenes.Familiar.ran) {
+    if (visible("Wizard", true) && Scenes.Familiar.ran === 0) {
       out("The wizard putters around with the glassware.");
     }
   },
