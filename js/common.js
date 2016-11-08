@@ -5,6 +5,9 @@ function no_op () {}
 //Always returns true
 function always_true () { return true; }
 
+//Always returns false
+function always_false () { return false; }
+
 //As per the name, capitalize the first letter of a string.
 String.prototype.capitalizeFirstLetter = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);

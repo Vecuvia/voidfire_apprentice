@@ -118,6 +118,7 @@ Handlers.handle_command = function (game, command) {
       turn_passes(game);
     }
   }
+  update_statusbar(game);
 }
 ```
 
@@ -155,7 +156,6 @@ function look (game) {
       desc += Items[item].short_description + "\n\n";
     }
   }
-  left(room.name);
   out(desc);
 }
 ```
@@ -219,3 +219,78 @@ Mob.DummyMob = {
 ```
 
 This done, sketching out the rest of the world was easier, just a matter of coming up with the appropriate descriptions.
+
+But there were still a few things left to do to make the world truly dynamic. An hook system to easily change/extend the behaviour of our commands, a scenes system to perform changes upon our game world, and to extend our implementation for our `turn_passes` function to make it work with the scenes system.
+
+Our hook system will go in `js/common.js`, and will consist of three functions. `register_hook`, to add a named hook and callback to an hook stack, `unregister_hook` to remove it and `hook` to execute the stack and return whether the hooks allow the command to continue or not.
+
+```javascript
+//js/common.js
+var Hooks = {};
+
+Hooks.pre_moving = [];
+Hooks.post_moving = [];
+
+...
+
+function register_hook (hook, name, callback) {
+  Hooks[hook].push({name: name, callback: callback});
+}
+
+function unregister_hook (hook, name) {
+  for (var i = 0; i < Hooks[hook].length; i++) {
+    if (Hooks[hook][i].name === name) {
+      Hooks[hook].splice(i, 1);
+      break;
+    }
+  }
+}
+
+function hook (hook, args) {
+  var allows = true;
+  for (var i = 0; i < Hooks[hook].length; i++) {
+    if (Hooks[hook][i].callback(game, args)) {
+      allows = false;
+    }
+  }
+  return allows;
+}
+```
+
+The scene system was simple, but the extensions to `turn_passes` required to make it work slightly less so. A scene can start or end under some conditions, execute code when it does and, if it's running, it can execute some code every turn. It also keeps tabs on whether it's running and how many times it ran during the game.
+
+```javascript
+//data/scenes.js
+var Scenes = {};
+
+Scenes.DummyScene = {
+  running: false,
+  ran: 0,
+  start: always_false,
+  on_start: no_op,
+  end: always_false,
+  on_end: no_op,
+  each_turn: no_op
+};
+
+//js/common.js
+function turn_passes (game) {
+  game.turns += 1;
+  for (var scene in Scenes) {
+    if (Scenes[scene].running) {
+      Scenes[scene].each_turn(game);
+      if (Scenes[scene].end(game)) {
+        Scenes[scene].running = false;
+        Scenes[scene].on_end(game);
+      }
+    } else {
+      if (Scenes[scene].start(game)) {
+        Scenes[scene].running = true;
+        Scenes[scene].ran += 1;
+        Scenes[scene].on_start(game);
+      }
+    }
+  }
+  /* Old code here */
+}
+```

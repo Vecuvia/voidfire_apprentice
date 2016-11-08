@@ -31,3 +31,13 @@ Scenes.Familiar = {
   },
   each_turn: function (game) {}
 };
+
+Scenes.DummyScene = {
+  running: false,
+  ran: 0,
+  start: always_false,
+  on_start: no_op,
+  end: always_false,
+  on_end: no_op,
+  each_turn: no_op
+};
