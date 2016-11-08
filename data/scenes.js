@@ -13,7 +13,7 @@ Scenes.Familiar = {
       Mobs.WizardFamiliar.position = Mobs[game.player].position;
       out("The room is filled with the smell of sulphur, and your master's familiar appears in a puff of black smoke.\n\n\"The master wants to speak with you.\", it says in a low, gravelly voice.");
       register_hook("post_moving", "familiar_follows", function (game, direction) {
-        
+        move_mob(Mobs.WizardFamiliar, direction);
       });
     }
   },

@@ -2,7 +2,8 @@ var Mobs = {};
 
 Mobs.Player = {
   position: "TowerMageQuarters",
-  name: "yourself",
+  article: "",
+  name: "you",
   keywords: ["me", "self", "myself"],
   pronoun: "you",
   short_description: "You are standing here.",
@@ -11,7 +12,8 @@ Mobs.Player = {
 
 Mobs.WizardFamiliar = {
   position: null,
-  name: "wizard's imp",
+  article: "Your ",
+  name: "master's familiar",
   keywords: ["imp", "familiar", "master's imp", "master's familiar", "wizard's imp", "wizard's familiar"],
   pronoun: "it",
   short_description: "The wizard's familiar is here, idly flapping its wings, looking expectantly at you.",
@@ -47,6 +49,7 @@ Mobs.WizardFamiliar = {
 
 Mobs.Wizard = {
   position: null,
+  article: "The ",
   name: "wizard",
   keywords: ["wizard", "master"],
   pronoun: "he",

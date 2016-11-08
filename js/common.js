@@ -101,11 +101,11 @@ function goto (game, room) {
 
 //(tries to) move a mob
 function move_mob (mob, direction) {
-  if (Rooms[mob.position][direction]) {
+  if (Rooms[mob.position].exits[direction]) {
     if (visible(mob)) {
       out(mob.article.capitalizeFirstLetter() + mob.name + " goes " + direction + ".");
     }
-    mob.position = Rooms[mob.position][direction];
+    mob.position = Rooms[mob.position].exits[direction];
     if (visible(mob)) {
       out(mob.article.capitalizeFirstLetter() + mob.name + " comes from the " + DirectionOpposites[direction] + ".");
     }
@@ -201,6 +201,7 @@ Hooks.pre_dropping = [];
 Hooks.post_dropping = [];
 
 function register_hook (hook, name, callback) {
+  console.log(callback);
   Hooks[hook].push({name: name, callback: callback});
 }
 
@@ -216,7 +217,7 @@ function unregister_hook (hook, name) {
 function hook (hook, args) {
   var allows = true;
   for (var i = 0; i < Hooks[hook].length; i++) {
-    if (Hooks[hook].callback(game, args)) {
+    if (Hooks[hook][i].callback(game, args)) {
       allows = false;
     }
   }
