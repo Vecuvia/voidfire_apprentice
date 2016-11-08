@@ -13,7 +13,9 @@ Scenes.Familiar = {
       Mobs.WizardFamiliar.position = Mobs[game.player].position;
       out("The room is filled with the smell of sulphur, and your master's familiar appears in a puff of black smoke.\n\n\"The master wants to speak with you.\", it says in a low, gravelly voice.");
       register_hook("post_moving", "familiar_follows", function (game, direction) {
-        move_mob(Mobs.WizardFamiliar, direction);
+        if (adjacent(Mobs.WizardFamiliar, Mobs[game.player])) {
+          move_mob(Mobs.WizardFamiliar, direction);
+        }
       });
     }
   },
@@ -23,6 +25,7 @@ Scenes.Familiar = {
   on_end: function (game) {
     if (visible("WizardFamiliar", true)) {
       out("The smell of sulphur once again fills the room as your master's familiar disappears in a puff of black smoke.");
+      unregister_hook("post_moving", "familiar_follows");
     }
     Mobs.WizardFamiliar.position = null;
   },

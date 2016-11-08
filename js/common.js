@@ -112,6 +112,16 @@ function move_mob (mob, direction) {
   }
 }
 
+//Checks whether two (mobs or items) are in adjacent rooms
+function adjacent (object, other) {
+  for (var exit in Rooms[object.position].exits) {
+    if (other.position === Rooms[object.position].exits[exit]) {
+      return true;
+    }
+  }
+  return false;
+}
+
 //Makes the world tick
 function turn_passes (game) {
   game.turns += 1;
