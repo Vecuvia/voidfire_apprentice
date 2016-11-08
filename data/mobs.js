@@ -39,7 +39,7 @@ Mobs.WizardFamiliar = {
     {
       name: "what",
       description: "what does the master want",
-      keywords: ["what", "what does he want"],
+      keywords: ["what", "what does he want", "what does the master want"],
       check: always_true,
       first_time: function (game) {
         out("\"You'll have to ask him yourself.\", it says.");

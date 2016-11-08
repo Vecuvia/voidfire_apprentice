@@ -65,6 +65,25 @@ Commands.push({
   }
 });
 
+//Topics/talk to command
+Commands.push({
+  pattern: "^(talk\\s+to|topics)\\s+(.+)$",
+  execute: function (game, captures) {
+    var target = captures[2];
+    for (var mob in Mobs) {
+      if (Mobs[mob].position === Mobs[game.player].position && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
+        out("You could ask " + Pronouns[Mobs[mob].pronoun].object + " about " + Mobs[mob].conversation.filter(function (item) {
+          return item.check(game);
+        }).map(function (item) {
+          return item.description;
+        }).betterJoin(", ", ", or ") + ".");
+        return 1;
+      }
+    }
+    out("You don't see them here.");
+  }
+});
+
 //Get command
 Commands.push({
   pattern: "^(g|get|take|pick\\s+up)\\s+(.+)$",
