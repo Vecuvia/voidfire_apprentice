@@ -56,6 +56,7 @@ function show_banner (game) {
 function introduction (game) {
   out(GAME_INTRODUCTION);
   look(game);
+  update_statusbar(game);
 }
 
 //Checks whether a mob or item is in the same room as the player
