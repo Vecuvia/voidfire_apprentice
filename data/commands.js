@@ -190,6 +190,18 @@ Commands.push({
 });
 
 Commands.push({
+  pattern: "^(z|wait)(\\s+(\\d+)(\\s+minutes)?)$",
+  execute: function (game, captures) {
+    var wait = 5;
+    if (captures[3]) {
+      wait = parseInt(captures[3]);
+    }
+    out("You wait " + wait + " minutes.");
+    return wait;
+  }
+});
+
+Commands.push({
   pattern: "^dummy$",
   execute: function (game, captures) {
     out(captures.join("; "));

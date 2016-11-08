@@ -20,7 +20,7 @@ Scenes.Familiar = {
     }
   },
   end: function (game) {
-    return Mobs[game.player].position === "Somewhere";
+    return Mobs[game.player].position === "TowerLaboratory";
   },
   on_end: function (game) {
     if (visible("WizardFamiliar", true)) {
