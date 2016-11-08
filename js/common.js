@@ -123,6 +123,7 @@ function turn_passes (game) {
     } else {
       if (Scenes[scene].start(game)) {
         Scenes[scene].running = true;
+        Scenes[scene].ran += 1;
         Scenes[scene].on_start(game);
       }
     }
