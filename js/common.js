@@ -184,3 +184,29 @@ Handlers.handle_command = function (game, command) {
   //Finally, update the status bar
   update_statusbar(game);
 }
+
+//Various hooks
+var Hooks = {};
+
+Hooks.on_moving = [];
+Hooks.on_getting = [];
+Hooks.on_dropping = [];
+
+function register_hook (hook, name, callback) {
+  Hooks[hook].push({name: name, callback: callback});
+}
+
+function unregister_hook (hook, name) {
+  for (var i = 0; i < Hooks[hook].length; i++) {
+    if (Hooks[hook][i].name === name) {
+      Hooks[hook].splice(i, 1);
+      break;
+    }
+  }
+}
+
+function hooks (hook) {
+  for (var i = 0; i < Hooks[hook].length; i++) {
+    Hooks[hook].callback(game);
+  }
+}
