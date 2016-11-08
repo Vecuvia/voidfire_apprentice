@@ -214,7 +214,11 @@ Commands.push({
 Commands.push({
   pattern: "^(hint|hints)$",
   execute: function (game, captures) {
-    out("### TODO");
+    for (var scene in Scenes) {
+      if (Scenes[scene].running && Scenes[scene].hint) {
+        Scenes[scene].hint(game);
+      }
+    }
   } 
 });
 

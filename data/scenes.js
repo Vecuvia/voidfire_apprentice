@@ -1,5 +1,28 @@
 var Scenes = {};
 
+Scenes.CleaningUp = {
+  running: true,
+  ran: 0,
+  start: always_false,
+  on_start: no_op,
+  end: function (game) {
+    return Scenes.Familiar.running;
+  },
+  on_end: no_op,
+  each_turn: no_op,
+  hint: function (game) {
+    if (Items.Broom.position === game.player) {
+      out("Have you tried `SWEEPing`?");
+    } else {
+      if (visible(Items.Broom)) {
+        out("There is a broom here. Why not `PICK` it up?");
+      } else {
+        out("You saw a broom somewhere. Go look for it!");
+      }
+    }
+  }
+};
+
 Scenes.Familiar = {
   running: false,
   ran: 0,
@@ -30,6 +53,20 @@ Scenes.Familiar = {
     }
     Mobs.WizardFamiliar.position = null;
   },
+  each_turn: function (game) {}
+};
+
+Scene.DeliverTheParcel = {
+  running: false,
+  ran: 0,
+  start: function (game) {
+    return Items.Parcel.location === game.player;
+  },
+  on_start: function (game) {},
+  end: function (game) {
+    return Item.Parcel.location === "CouncilInnerChamber";
+  },
+  on_end: function (game) {},
   each_turn: function (game) {}
 };
 
