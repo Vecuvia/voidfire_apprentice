@@ -63,7 +63,7 @@ Scenes.Familiar = {
   }
 };
 
-Scene.DeliverTheParcel = {
+Scenes.DeliverTheParcel = {
   running: false,
   ran: 0,
   start: function (game) {

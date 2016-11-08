@@ -257,7 +257,7 @@ function hook (hook, args) {
 }
 ```
 
-The scene system was simple, but the extensions to `turn_passes` required to make it work slightly less so. A scene can start or end under some conditions, execute code when it does and, if it's running, it can execute some code every turn. It also keeps tabs on whether it's running and how many times it ran during the game.
+The scene system was simple, but the extensions to `turn_passes` required to make it work slightly less so. A scene can start or end under some conditions, execute code when it does and, if it's running, it can execute some code every turn. It also keeps tabs on whether it's running and how many times it ran during the game, and can provide hints to the player.
 
 ```javascript
 //data/scenes.js
@@ -270,7 +270,8 @@ Scenes.DummyScene = {
   on_start: no_op,
   end: always_false,
   on_end: no_op,
-  each_turn: no_op
+  each_turn: no_op,
+  hint: no_op
 };
 
 //js/common.js
