@@ -210,11 +210,12 @@ Hooks.post_getting = [];
 Hooks.pre_dropping = [];
 Hooks.post_dropping = [];
 
+//Registers a named hook in the `hook` stack
 function register_hook (hook, name, callback) {
-  console.log(callback);
   Hooks[hook].push({name: name, callback: callback});
 }
 
+//Removes a named hook from the `hook` stack
 function unregister_hook (hook, name) {
   for (var i = 0; i < Hooks[hook].length; i++) {
     if (Hooks[hook][i].name === name) {
@@ -224,6 +225,8 @@ function unregister_hook (hook, name) {
   }
 }
 
+//Executes all the hooks in the `hook` stack, an returns whether they allow
+// the command to continue (used in pre hooks).
 function hook (hook, args) {
   var allows = true;
   for (var i = 0; i < Hooks[hook].length; i++) {

@@ -189,6 +189,7 @@ Commands.push({
   }
 });
 
+//Wait command
 Commands.push({
   pattern: "^(z|wait)(\\s+(\\d+)(\\s+minutes)?)?$",
   execute: function (game, captures) {
