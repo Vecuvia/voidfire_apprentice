@@ -58,6 +58,24 @@ function introduction (game) {
   look(game);
 }
 
+//Checks whether a mob or item is in the same room as the player
+function in_room (id, mob) {
+  if (mob) {
+    return Mobs[id].position === Mobs[game.player].position;
+  } else {
+    return Items[id].position === Mobs[game.player].position;
+  }
+}
+
+//Checks a mob or item for visibility from the player
+function visible (id, mob) {
+  if (mob) {
+    return in_room(id, mob) || Mobs[id].position === game.player;
+  } else {
+    return in_room(id, mob) || Items[id].position === game.player;
+  }
+}
+
 //Describes the current room
 function look (game) {
   var position = Mobs[game.player].position;
@@ -67,7 +85,7 @@ function look (game) {
   desc += room.description + "\n\n";
   for (var mob in Mobs) {
     //Add to `desc` the short description of each mob in the same room.
-    if (mob !== game.player && Mobs[mob].position === position) {
+    if (mob !== game.player && in_room(mob, true)) {
       desc += Mobs[mob].short_description + "\n\n";
     }
   }
@@ -75,7 +93,7 @@ function look (game) {
   for (var item in Items) {
     //Add to `desc` the short description of each non-scenery item in the
     // same room.
-    if (Items[item].position === position && !Items[item].scenery) {
+    if (in_room(item) && !Items[item].scenery) {
       desc += Items[item].short_description + "\n\n";
     }
   }

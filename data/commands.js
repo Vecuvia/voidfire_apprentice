@@ -16,15 +16,15 @@ Commands.push({
   pattern: "^(x|look\\s+at|examine)\\s+(.+)$",
   execute: function (game, captures) {
     var examined = captures[2];
-    var position = Mobs[game.player].position;
+    //var position = Mobs[game.player].position;
     for (var mob in Mobs) {
-      if (Mobs[mob].position === position && Mobs[mob].keywords.includes(examined)) {
+      if (visible(mob, true) && Mobs[mob].keywords.includes(examined)) {
         out(Mobs[mob].description);
         return;
       }
     }
     for (var item in Items) {
-      if ((Items[item].position === position || Items[item].position === game.player) && Items[item].keywords.includes(examined)) {
+      if (visible(item, false) && Items[item].keywords.includes(examined)) {
         out(Items[item].description);
         return;
       }
@@ -40,7 +40,7 @@ Commands.push({
     var topic = captures[2];
     var target = captures[3];
     for (var mob in Mobs) {
-      if (Mobs[mob].position === Mobs[game.player].position && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
+      if (visible(mob, true) && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
         for (var i = 0; i < Mobs[mob].conversation.length; i++) {
           var subject = Mobs[mob].conversation[i];
           if (subject.keywords.includes(topic) && subject.check(game)) {
@@ -71,7 +71,7 @@ Commands.push({
   execute: function (game, captures) {
     var target = captures[2];
     for (var mob in Mobs) {
-      if (Mobs[mob].position === Mobs[game.player].position && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
+      if (visible(mob, true) && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
         out("You could ask " + Pronouns[Mobs[mob].pronoun].object + " about " + Mobs[mob].conversation.filter(function (item) {
           return item.check(game);
         }).map(function (item) {
@@ -90,7 +90,7 @@ Commands.push({
   execute: function (game, captures) {
     var taken = captures[2];
     for (var item in Items) {
-      if (Items[item].position === Mobs[game.player].position && Items[item].keywords.includes(taken)) {
+      if (in_room(item, false) && Items[item].keywords.includes(taken)) {
         if (Items[item].gettable) {
           Items[item].position = game.player;
           out("You pick up " + Items[item].article + " " + Items[item].name + ".");
