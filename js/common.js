@@ -112,6 +112,21 @@ function goto (game, room) {
 //Makes the world tick
 function turn_passes (game) {
   game.turns += 1;
+  //Handle scene start, end and, if ongoing, invoke their `each_turn` function
+  for (var scene in Scenes) {
+    if (Scenes[scene].running) {
+      Scenes[scene].each_turn(game);
+      if (Scenes[scene].end(game)) {
+        Scenes[scene].running = false;
+        Scenes[scene].on_end(game);
+      }
+    } else {
+      if (Scenes[scene].start(game)) {
+        Scenes[scene].running = true;
+        Scenes[scene].on_start(game);
+      }
+    }
+  }
   //Iterate through all the items and mobs in the game world and, if they
   // have an `each_turn` function make them tick.
   for (var item in Items) {

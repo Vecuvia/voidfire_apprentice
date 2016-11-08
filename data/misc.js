@@ -25,5 +25,11 @@ var Pronouns = {
   	object: "them",
   	possessive: "theirs",
   	reflexive: "themselves"
+  },
+  he: {
+  	subject: "he",
+  	object: "him",
+  	possessive: "his",
+  	reflexive: "himself"
   }
 }

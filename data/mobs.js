@@ -16,12 +16,6 @@ Mobs.WizardFamiliar = {
   pronoun: "it",
   short_description: "The wizard's familiar is here, idly flapping its wings, looking expectantly at you.",
   description: "It's a short, stocky creature, with dark red skin and stubby wings, dressed only in a loincloth.",
-  each_turn: function (game) {
-    if (game.turns === 5) {
-      Mobs.WizardFamiliar.position = Mobs[game.player].position;
-      out("The room is filled with the smell of sulphur, and your master's familiar appears in a puff of black smoke.\n\n\"The master wants to speak with you.\", it says in a low, gravelly voice.");
-    }
-  },
   topics: [],
   conversation: [
     {
@@ -49,7 +43,23 @@ Mobs.WizardFamiliar = {
       }
     }
   ]
-}
+};
+
+Mobs.Wizard = {
+  position: null,
+  name: "wizard",
+  keywords: ["wizard", "master"],
+  pronoun: "he",
+  short_description: "...",
+  description: "...",
+  each_turn: function (game) {
+    if (visible("Wizard", true) && Scenes.Familiar.ran) {
+      out("The wizard putters around with the glassware.");
+    }
+  },
+  topics: [],
+  conversation: []
+};
 
 Mobs.DummyMob = {
   position: "DummyRoom",
