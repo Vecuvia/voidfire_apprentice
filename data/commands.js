@@ -206,7 +206,7 @@ Commands.push({
 Commands.push({
   pattern: "^(h|help|help me|what do I do)$",
   execute: function (game, captures) {
-    out("**The Voidfire Apprentice** is a mostly traditional interactive fiction - this means you interact with the game world through a prompt, and that the game answers your commands with text.\n\nCommands usually take the form of `> VERB OBJECT` - some commands can have more than one target, like `> SAY HELLO TO BLACKSMITH`.\n\nYou can `GO` in any cardinal direction, or `GO TO` an adjacent room. You can examine your surroundings with the `LOOK` command and further `LOOK AT/EXAMINE` individual objects. You can also `GET/TAKE/PICK UP` objects on the ground and `DROP/LEAVE` carried items. You can take your `INVENTORY`, and you can interact with people by finding out what `TOPICS` they are willing to talk about and by `ASKing/TELLing/SAYing STUFF TO` them. You can get further `HELP` by asking for `HINTS`.");
+    out("**The Voidfire Apprentice** is a mostly traditional interactive fiction - this means you interact with the game world through a prompt, and that the game answers your commands with text.\n\nCommands usually take the form of `> VERB OBJECT` - some commands can have more than one target, like `> SAY HELLO TO BLACKSMITH`.\n\nYou can `GO` in any cardinal direction, or `GO TO` an adjacent room. You can examine your surroundings with the `LOOK` command and further `LOOK AT/EXAMINE` individual objects. You can also `GET/TAKE/PICK UP` objects on the ground and `DROP/LEAVE` carried items. You can take your `INVENTORY`, interact with people by finding out what `TOPICS` they are willing to talk about and by `ASKing/TELLing/SAYing STUFF TO` them. You can get further `HELP` by asking for `HINTS`.");
   }
 });
 
