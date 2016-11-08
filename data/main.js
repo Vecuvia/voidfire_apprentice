@@ -25,3 +25,9 @@ function save_game (game) {
 function load_game (game) {
   //TODO
 }
+
+//Updates the status bar
+function update_status_bar (game) {
+  left(Rooms[Mobs[game.player].position].name);
+  right("Healthy");
+}

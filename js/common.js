@@ -59,6 +59,7 @@ function introduction (game) {
 }
 
 //Checks whether a mob or item is in the same room as the player
+//If the `mob` param is true checks for a mob, otherwise an item
 function in_room (id, mob) {
   if (mob) {
     return Mobs[id].position === Mobs[game.player].position;
@@ -68,6 +69,7 @@ function in_room (id, mob) {
 }
 
 //Checks a mob or item for visibility from the player
+//If the `mob` param is true checks for a mob, otherwise an item
 function visible (id, mob) {
   if (mob) {
     return in_room(id, mob) || Mobs[id].position === game.player;
@@ -97,8 +99,6 @@ function look (game) {
       desc += Items[item].short_description + "\n\n";
     }
   }
-  //TODO: possibly move this to `handle_command`
-  left(room.name);
   out(desc);
 }
 
@@ -159,9 +159,11 @@ Handlers.handle_command = function (game, command) {
   if (!executed) {
     out("Uh?");
   } else {
-    //And finally, let's make our world tick.
+    //Let's make our world tick.
     for (var i = 0; i < elapsed; i++) {
       turn_passes(game);
     }
   }
+  //Finally, update the status bar
+  update_statusbar(game);
 }

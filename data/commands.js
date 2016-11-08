@@ -1,9 +1,9 @@
 var Commands = [];
 
-//Commands must return the number of minutes elapsed. `undefined` will be
-// treated as 0.
+//Commands must return the number of minutes elapsed. `undefined` or other 
+// falsy values will be treated as 0.
 
-//Look command - simply invoke the `look` function
+//Look command - simply invoke the `look` function - takes no time
 Commands.push({
   pattern: "^(l|look)$",
   execute: function (game, captures) {
@@ -11,12 +11,12 @@ Commands.push({
   }
 });
 
-//Examine/look at command
+//Examine/look at command - takes no time
 Commands.push({
   pattern: "^(x|look\\s+at|examine)\\s+(.+)$",
   execute: function (game, captures) {
     var examined = captures[2];
-    //var position = Mobs[game.player].position;
+    //Look first at the mobs, and then at the items.
     for (var mob in Mobs) {
       if (visible(mob, true) && Mobs[mob].keywords.includes(examined)) {
         out(Mobs[mob].description);
@@ -53,6 +53,8 @@ Commands.push({
             return 1;
           }
         }
+        //If the topic is not understood by the mob, then give the player a
+        // list of acceptable topics as if they wrote the `topics` command.
         out(Pronouns[Mobs[mob].pronoun].subject.capitalizeFirstLetter() + " doesn't seem to know anything about that. You could ask " + Pronouns[Mobs[mob].pronoun].object + " about " + Mobs[mob].conversation.filter(function (item) {
           return item.check(game);
         }).map(function (item) {
@@ -71,6 +73,7 @@ Commands.push({
   execute: function (game, captures) {
     var target = captures[2];
     for (var mob in Mobs) {
+      //Give the player a list of acceptable topics.
       if (visible(mob, true) && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
         out("You could ask " + Pronouns[Mobs[mob].pronoun].object + " about " + Mobs[mob].conversation.filter(function (item) {
           return item.check(game);
