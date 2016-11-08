@@ -60,23 +60,13 @@ function introduction (game) {
 }
 
 //Checks whether a mob or item is in the same room as the player
-//If the `mob` param is true checks for a mob, otherwise an item
-function in_room (id, mob) {
-  if (mob) {
-    return Mobs[id].position === Mobs[game.player].position;
-  } else {
-    return Items[id].position === Mobs[game.player].position;
-  }
+function in_room (object) {
+  return object.position === Mobs[game.player].position;
 }
 
 //Checks a mob or item for visibility from the player
-//If the `mob` param is true checks for a mob, otherwise an item
-function visible (id, mob) {
-  if (mob) {
-    return in_room(id, mob) || Mobs[id].position === game.player;
-  } else {
-    return in_room(id, mob) || Items[id].position === game.player;
-  }
+function visible (object) {
+  return in_room(object) || object.position === game.player;
 }
 
 //Describes the current room
@@ -88,7 +78,7 @@ function look (game) {
   desc += room.description + "\n\n";
   for (var mob in Mobs) {
     //Add to `desc` the short description of each mob in the same room.
-    if (mob !== game.player && in_room(mob, true)) {
+    if (mob !== game.player && in_room(Mobs[mob])) {
       desc += Mobs[mob].short_description + "\n\n";
     }
   }
@@ -96,7 +86,7 @@ function look (game) {
   for (var item in Items) {
     //Add to `desc` the short description of each non-scenery item in the
     // same room.
-    if (in_room(item) && !Items[item].scenery) {
+    if (in_room(Items[item]) && !Items[item].scenery) {
       desc += Items[item].short_description + "\n\n";
     }
   }
@@ -107,6 +97,19 @@ function look (game) {
 function goto (game, room) {
   Mobs[game.player].position = room;
   look(game);
+}
+
+//(tries to) move a mob
+function move_mob (mob, direction) = {
+  if (Rooms[mob.position][direction]) {
+    if (visible(mob)) {
+      out(mob.article.capitalizeFirstLetter() + mob.name + " goes " + direction + ".");
+    }
+    mob.position = Rooms[mob.position][direction];
+    if (visible(mob)) {
+      out(mob.article.capitalizeFirstLetter() + mob.name + " comes from the " + DirectionOpposites[direction] + ".");
+    }
+  }
 }
 
 //Makes the world tick
@@ -188,9 +191,14 @@ Handlers.handle_command = function (game, command) {
 //Various hooks
 var Hooks = {};
 
-Hooks.on_moving = [];
-Hooks.on_getting = [];
-Hooks.on_dropping = [];
+Hooks.pre_moving = [];
+Hooks.post_moving = [];
+
+Hooks.pre_getting = [];
+Hooks.post_getting = [];
+
+Hooks.pre_dropping = [];
+Hooks.post_dropping = [];
 
 function register_hook (hook, name, callback) {
   Hooks[hook].push({name: name, callback: callback});
@@ -205,8 +213,12 @@ function unregister_hook (hook, name) {
   }
 }
 
-function hooks (hook) {
+function hook (hook, args) {
+  var allows = true;
   for (var i = 0; i < Hooks[hook].length; i++) {
-    Hooks[hook].callback(game);
+    if (Hooks[hook].callback(game, args)) {
+      allows = false;
+    }
   }
+  return allows;
 }

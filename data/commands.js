@@ -18,13 +18,13 @@ Commands.push({
     var examined = captures[2];
     //Look first at the mobs, and then at the items.
     for (var mob in Mobs) {
-      if (visible(mob, true) && Mobs[mob].keywords.includes(examined)) {
+      if (visible(Mobs[mob]) && Mobs[mob].keywords.includes(examined)) {
         out(Mobs[mob].description);
         return;
       }
     }
     for (var item in Items) {
-      if (visible(item, false) && Items[item].keywords.includes(examined)) {
+      if (visible(Mobs[mob]) && Items[item].keywords.includes(examined)) {
         out(Items[item].description);
         return;
       }
@@ -40,7 +40,7 @@ Commands.push({
     var topic = captures[2];
     var target = captures[3];
     for (var mob in Mobs) {
-      if (visible(mob, true) && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
+      if (visible(Mobs[mob]) && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
         for (var i = 0; i < Mobs[mob].conversation.length; i++) {
           var subject = Mobs[mob].conversation[i];
           if (subject.keywords.includes(topic) && subject.check(game)) {
@@ -74,7 +74,7 @@ Commands.push({
     var target = captures[2];
     for (var mob in Mobs) {
       //Give the player a list of acceptable topics.
-      if (visible(mob, true) && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
+      if (visible(Mobs[mob]) && Mobs[mob].keywords.includes(target) && Mobs[mob].conversation) {
         out("You could ask " + Pronouns[Mobs[mob].pronoun].object + " about " + Mobs[mob].conversation.filter(function (item) {
           return item.check(game);
         }).map(function (item) {
@@ -93,7 +93,7 @@ Commands.push({
   execute: function (game, captures) {
     var taken = captures[2];
     for (var item in Items) {
-      if (in_room(item, false) && Items[item].keywords.includes(taken)) {
+      if (in_room(Items[item]) && Items[item].keywords.includes(taken)) {
         if (Items[item].gettable) {
           Items[item].position = game.player;
           out("You pick up " + Items[item].article + " " + Items[item].name + ".");
@@ -177,9 +177,12 @@ Commands.push({
       }
     }
     if (direction in Rooms[position].exits) {
-      out("You go " + direction + ".");
-      goto(game, Rooms[position].exits[direction]);
-      return 1;
+      if (hook("pre_moving", direction)) {
+        out("You go " + direction + ".");
+        goto(game, Rooms[position].exits[direction]);
+        hook("post_moving", direction);
+        return 1;
+      }
     } else {
       out("You can't go in that direction.");
     }
