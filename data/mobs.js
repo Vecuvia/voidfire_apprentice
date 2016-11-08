@@ -26,10 +26,10 @@ Mobs.WizardFamiliar = {
       keywords: ["where", "where is he", "where is the master"],
       check: always_true,
       first_time: function (game) {
-        out("\"He's waiting for you in the laboratory, down in the basement.\", it says.");
+        out("\"He's waiting for you in the laboratory, down to the first floor.\", it says.");
       },
       following: function (game) {
-        out("\"He's in the laboratory, down in the basement.\"");
+        out("\"He's in the laboratory, down to the first floor.\"");
       }
     },
     {
