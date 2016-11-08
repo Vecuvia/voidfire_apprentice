@@ -53,7 +53,14 @@ Scenes.Familiar = {
     }
     Mobs.WizardFamiliar.position = null;
   },
-  each_turn: function (game) {}
+  each_turn: function (game) {},
+  hint: function (game) {
+    if (Mobs.WizardFamiliar.topics.includes("where")) {
+      out("Your master is waiting for you at the ground floor. You shouldn't make him wait.");
+    } else {
+      out("There is the master's familiar here. Have you tried `TALKing` to it?");
+    }
+  }
 };
 
 Scene.DeliverTheParcel = {

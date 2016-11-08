@@ -26,7 +26,7 @@ Array.prototype.betterJoin = function (middle, last) {
       string += middle;
     }
   }
-  if (this.length > 2) {
+  if (this.length > 1) {
     string += last + this[this.length - 1];
   } else {
     string += this[this.length - 1];
