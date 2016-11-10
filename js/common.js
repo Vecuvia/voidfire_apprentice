@@ -140,6 +140,16 @@ function within (object) {
   return contained;
 }
 
+//Finds an item within the current room
+function find_item (keyword) {
+  for (var item in Items) {
+    if (in_room(Items[item]) && Items[item].keywords.includes(keyword)) {
+      return item;
+    }
+  }
+  return null;
+}
+
 //Makes the world tick
 function turn_passes (game) {
   game.turns += 1;

@@ -105,19 +105,36 @@ Commands.push({
 
 //Get command
 Commands.push({
-  pattern: "^(g|get|take|pick\\s+up)\\s+(.+)$",
+  pattern: "^(g|get|take|pick\\s+up)\\s+(.+?)(\\s+from\\s+(.+))?$",
   execute: function (game, captures) {
-    var taken = captures[2];
-    for (var item in Items) {
-      if (in_room(Items[item]) && Items[item].keywords.includes(taken)) {
-        if (Items[item].gettable) {
-          Items[item].position = game.player;
-          out("You pick up " + Items[item].article + " " + Items[item].name + ".");
-          return 1;
-        } else {
-          out("You can't pick up " + Items[item].article + " " + Items[item].name + ", it's fixed in place.");
-          return;
+    var target = captures[2];
+    var container = captures[4];
+    var taken = null;
+    if (container) {
+      var box = find_item(container);
+      var contained = within(box);
+      for (var i = 0; i < contained.length; i++) {
+        if (Items[contained[i]].keywords.includes(target)) {
+          taken = contained[i];
+          break;
         }
+      }
+    } else {
+      for (var item in Items) {
+        if (in_room(Items[item]) && Items[item].keywords.includes(taken)) {
+          taken = item;
+          break;
+        }
+      }
+    }
+    if (taken) {
+      if (Items[taken].gettable) {
+        Items[taken].position = game.player;
+        out("You pick up " + Items[taken].article + " " + Items[taken].name + ".");
+        return 1;
+      } else {
+        out("You can't pick up " + Items[taken].article + " " + Items[taken].name + ", it's fixed in place.");
+        return;
       }
     }
     out("You don't see that here.");
