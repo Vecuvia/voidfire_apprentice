@@ -123,7 +123,7 @@ function move_mob (mob, direction) {
 function adjacent (object, other) {
   for (var exit in Rooms[object.position].exits) {
     if (other.position === Rooms[object.position].exits[exit]) {
-      return true;
+      return exit;
     }
   }
   return false;

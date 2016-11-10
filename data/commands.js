@@ -192,6 +192,27 @@ Commands.push({
   }
 });
 
+//Enter/go through command
+Commands.push({
+  pattern: "^(enter|go\\s+through)\\s+(.+)$",
+  execute: function (game, captures) {
+    var doorway = captures[2];
+    for (var item in Items) {
+      if (visible(Items[item]) && Items[item].keywords.includes(examined)) {
+        if (Items[item].doorway && hook("pre_moving")) {
+          out("You go through " + Items[item].article + " " + Items[item].name + ".");
+          goto(game, Items[item].doorway);
+          hook("post_moving");
+        } else {
+          out("You can't enter that.");
+        }
+        return;
+      }
+    }
+    out("You don't see that here.");
+  }
+});
+
 //Wait command
 Commands.push({
   pattern: "^(z|wait)(\\s+(\\d+)(\\s+minutes)?)?$",
