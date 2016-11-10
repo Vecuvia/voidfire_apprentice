@@ -93,8 +93,16 @@ function look (game) {
   for (var item in Items) {
     //Add to `desc` the short description of each non-scenery item in the
     // same room.
-    if (in_room(Items[item]) && !Items[item].scenery) {
-      desc += Items[item].short_description + "\n\n";
+    if (in_room(Items[item])) {
+      if (!Items[item].scenery) {
+        desc += Items[item].short_description + "\n\n";
+      }
+      contained = within(item);
+      if (contained.length > 0) {
+        desc += (Items[item].kind === "container" ? "In " : "On ") + Items[item].article + " " + Items[item].name + " you see " + contained.map(function (object) {
+          return Items[object].article + " " + Items[object].name;
+        }).betterJoin(", ", ", and ") + ".";
+      }
     }
   }
   out(desc);
