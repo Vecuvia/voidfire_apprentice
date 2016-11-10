@@ -26,6 +26,19 @@ Commands.push({
     for (var item in Items) {
       if (visible(Items[item]) && Items[item].keywords.includes(examined)) {
         out(Items[item].description);
+        var desc = "";
+        if(Items[item].kind === "container" || Items[item].kind === "supporter") {
+          var contained = within(item);
+          out((Items[item].kind === "container" ? "Within ": "On ") + Items[item].article + " " + Items[item].name + " you see:\n\n");
+          if (contained) {
+            desc += contained.map(function (object) {
+              return " * " + Items[object].article + " " + Items[object].name;
+            }).join("\n");
+          } else {
+            desc += "> Nothing"
+          }
+          out(desc);
+        }
         return;
       }
     }

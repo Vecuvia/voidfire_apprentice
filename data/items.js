@@ -34,7 +34,7 @@ Items.Fireplace = {
 };
 
 Items.MasterToilet = {
-  position: "ToweMageBathroom",
+  position: "TowerMageBathroom",
   article: "the",
   name: "toilet",
   keywords: ["toilet"],
@@ -45,7 +45,7 @@ Items.MasterToilet = {
 };
 
 Items.MasterSink = {
-  position: "ToweMageBathroom",
+  position: "TowerMageBathroom",
   article: "the",
   name: "sink",
   keywords: ["sink", "mirror"],
@@ -56,7 +56,7 @@ Items.MasterSink = {
 };
 
 Items.MasterBathtub = {
-  position: "ToweMageBathroom",
+  position: "TowerMageBathroom",
   article: "the",
   name: "large bathtub",
   keywords: ["bathtub", "tub"],
@@ -64,6 +64,29 @@ Items.MasterBathtub = {
   gettable: false,
   short_description: "",
   description: "A large white porcelain affair, standing on four brass feet."
+};
+
+Items.YourDesk = {
+  kind: "supporter",
+  position: "TowerYourBedroom",
+  article: "your",
+  name: "desk",
+  keywords: ["your desk", "desk", "table"],
+  scenery: true,
+  gettable: false,
+  short_description: "",
+  description: "",
+};
+
+Items.YourSpellbook = {
+  position: "YourDesk",
+  article: "your",
+  name: "spellbook",
+  keywords: ["your spellbook", "spellbook", "book"],
+  scenery: false,
+  gettable: true,
+  short_description: "",
+  description: ""
 };
 
 Items.Broom = {

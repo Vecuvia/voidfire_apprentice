@@ -129,6 +129,17 @@ function adjacent (object, other) {
   return false;
 }
 
+//Returns all the items (by id) within another (by id)
+function within (object) {
+  var contained = [];
+  for (var item in Items) {
+    if (Items[item].position === object) {
+      contained.push(item);
+    }
+  }
+  return contained;
+}
+
 //Makes the world tick
 function turn_passes (game) {
   game.turns += 1;
