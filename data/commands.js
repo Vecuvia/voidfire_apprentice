@@ -143,6 +143,28 @@ Commands.push({
 
 //Drop command
 Commands.push({
+  pattern: "^(drop|leave|put)\\s+(.+?)\\s+(on|in)\\s+(.+)$",
+  execute: function (game, captures) {
+    var target = captures[2];
+    var container = captures[4];
+    var box = find_item(container);
+    if (!box) {
+      out("You don't see that here.");
+      return;
+    }
+    for (var item in Items) {
+      if (Items[item].position === game.player && Items[item].keywords.includes(target)) {
+        Items[item].position = box;
+        out("You put " + Items[item].article + " " + Items[item].name + (Items[box].kind === "container" ? " in " : " on ") + Items[box].article + " " + Items[box].name + ".");
+        return 1;
+      }
+    }
+    out("You aren't carrying that.");
+  }
+});
+
+//Drop command
+Commands.push({
   pattern: "^(drop|leave|throw\\s+away)\\s+(.+)$",
   execute: function (game, captures) {
     var dropped = captures[2];
