@@ -76,6 +76,20 @@ Mobs.Wizard = {
       following: function (game) {
         out("\"As I said, you'll have to deliver that parcel to the wizards' council.\"");
       }
+    },
+    {
+      name: "where",
+      description: "how to reach the council",
+      keywords: ["how", "council", "reach", "wizard's council", "how to reach the council", "where is the council"],
+      check: function (game) {
+        return Mobs.Wizard.topics.includes("task");
+      },
+      first_time: function (game) {
+        out("\"Oh, yes. I almost forgot. You need to go through the mirror in the library, it's tuned to the council's location right now.\", he says, before going back to his experiment.");
+      },
+      following: function (game) {
+        out("\"You need to go through the mirror in the library.\"");
+      }
     }
   ]
 };

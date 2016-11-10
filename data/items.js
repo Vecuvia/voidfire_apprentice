@@ -85,8 +85,14 @@ Items.YourSpellbook = {
   keywords: ["your spellbook", "spellbook", "book"],
   scenery: false,
   gettable: true,
-  short_description: "",
-  description: ""
+  short_description: "You left your spellbook here.",
+  description: "It's a small leather-covered ring binder containing all the notes you took through your apprenticeship. You could `LOOK UP` something `INTO` it.",
+  topics: [
+    {
+      keywords: ["council", "wizard's council"],
+      description: "You penned down a few paragraphs or so about the council.\n\nThe wizard's council was founded about two centuries ago, after the last reality quake broke up and mixed together a dozen universes."
+    }
+  ]
 };
 
 Items.Broom = {

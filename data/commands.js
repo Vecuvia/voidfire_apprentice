@@ -300,6 +300,37 @@ Commands.push({
   } 
 });
 
+//Look up command
+Commands.push({
+  pattern: "^(lookup|look up)\\s+(.+)\\s+(in|into)\\s+(.+)",
+  execute: function (game, captures) {
+    var topic = captures[2];
+    var target = captures[4];
+    var book = null;
+    for (var item in Items) {
+      if ((in_room(Items[item]) || Items[item].position === game.player) && Items[item].keywords.includes(keyword)) {
+        book = Item[item];
+        break;
+      }
+    }
+    if (book) {
+      if (book.topics) {
+        for (var i = 0; i < book.topics.length; i++) {
+          if (book.topics[i].keywords.includes(topic)) {
+            out(book.topics[i].description);
+            return 1;
+          }
+        }
+        out("There's nothing there about that topic.");
+        return;
+      }
+      out("That's not a book.");
+      return;
+    }
+    out("You don't see that here.");
+  }
+});
+
 /*
 Commands.push({
   pattern: "^dummy$",
