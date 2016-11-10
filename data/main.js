@@ -12,7 +12,9 @@ function initialize_game_data () {
   return {
     player: "Player",
     handler: "handle_command",
-    turns: 0
+    turns: 0,
+    history: [],
+    history_index: 0
   }
 }
 

@@ -29,3 +29,5 @@
 - [ ] 2016-11-07T23:01 Add hints
 - [x] 2016-11-08T12:40 2016-11-08T02:38 Trim command before parsing it
 - [x] 2016-11-08T12:49 2016-11-08T12:41 Refactor commands code
+- [x] 2016-11-10T13:03 2016-11-10T12:48 History functionality
+- [ ] 2016-11-10T12:48 Autocomplete
