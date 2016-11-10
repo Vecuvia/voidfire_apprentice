@@ -30,7 +30,7 @@ Commands.push({
         if(Items[item].kind === "container" || Items[item].kind === "supporter") {
           var contained = within(item);
           out((Items[item].kind === "container" ? "Within ": "On ") + Items[item].article + " " + Items[item].name + " you see:\n\n");
-          if (contained) {
+          if (contained.length > 0) {
             desc += contained.map(function (object) {
               return " * " + Items[object].article + " " + Items[object].name;
             }).join("\n");
@@ -121,7 +121,7 @@ Commands.push({
       }
     } else {
       for (var item in Items) {
-        if (in_room(Items[item]) && Items[item].keywords.includes(taken)) {
+        if (in_room(Items[item]) && Items[item].keywords.includes(target)) {
           taken = item;
           break;
         }
@@ -141,7 +141,7 @@ Commands.push({
   }
 });
 
-//Drop command
+//Put in/on command
 Commands.push({
   pattern: "^(drop|leave|put)\\s+(.+?)\\s+(on|in)\\s+(.+)$",
   execute: function (game, captures) {
