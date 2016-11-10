@@ -33,7 +33,10 @@ Commands.push({
   }
 });
 
-//Say command
+//Say to command
+//TODO: extend this to be able to say things to objects
+//TODO: remove the "You could ask them about" when the mob has no topics
+//TODO: add per-mob default conversational responses
 Commands.push({
   pattern: "^(say|tell|ask)\\s+(.+)\\s+to\\s+(.+)$",
   execute: function (game, captures) {
@@ -214,6 +217,8 @@ Commands.push({
 Commands.push({
   pattern: "^(hint|hints)$",
   execute: function (game, captures) {
+    //This grabs the hints for every running scene, but I don't know in what
+    // order they'll be shown.
     for (var scene in Scenes) {
       if (Scenes[scene].running && Scenes[scene].hint) {
         Scenes[scene].hint(game);

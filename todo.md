@@ -19,15 +19,16 @@
   - [x] 2016-11-07T19:31 2016-11-07T19:14 `inventory` command
 - Rooms
   - [x] 2016-11-08T02:25 2016-11-07T22:10 Second floor staircase
-  - [ ] 2016-11-07T22:10 First floor staircase
-  - [ ] 2016-11-07T22:10 Your quarters
-  - [ ] 2016-11-07T22:10 Ground floor
-  - [ ] 2016-11-07T22:11 Third floor - Library
+  - [x] 2016-11-08T??:?? 2016-11-07T22:10 First floor staircase
+  - [x] 2016-11-08T??:?? 2016-11-07T22:10 Your quarters
+  - [x] 2016-11-08T??:?? 2016-11-07T22:10 Ground floor
+  - [x] 2016-11-08T??:?? 2016-11-07T22:11 Third floor - Library
 - Items
 - Mobs
 - [x] 2016-11-08T14:32 2016-11-07T23:01 Add scenes
-- [ ] 2016-11-07T23:01 Add hints
+- [x] 2016-11-08T??:?? 2016-11-07T23:01 Add hints
 - [x] 2016-11-08T12:40 2016-11-08T02:38 Trim command before parsing it
 - [x] 2016-11-08T12:49 2016-11-08T12:41 Refactor commands code
 - [x] 2016-11-10T13:03 2016-11-10T12:48 History functionality
 - [ ] 2016-11-10T12:48 Autocomplete
+- [ ] 2016-11-10T13:44 Backdrops

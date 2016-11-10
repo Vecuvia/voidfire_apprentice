@@ -33,6 +33,39 @@ Items.Fireplace = {
   description: "Set in the east wall, the fireplace is roaring, warming up the whole room."
 };
 
+Items.MasterToilet = {
+  position: "ToweMageBathroom",
+  article: "the",
+  name: "toilet",
+  keywords: ["toilet"],
+  scenery: true,
+  gettable: false,
+  short_description: "",
+  description: "It's just a toilet."
+};
+
+Items.MasterSink = {
+  position: "ToweMageBathroom",
+  article: "the",
+  name: "sink",
+  keywords: ["sink", "mirror"],
+  scenery: true,
+  gettable: false,
+  short_description: "",
+  description: "It's simply a sink, with warm and cold water and a mirror above."
+};
+
+Items.MasterBathtub = {
+  position: "ToweMageBathroom",
+  article: "the",
+  name: "large bathtub",
+  keywords: ["bathtub", "tub"],
+  scenery: true,
+  gettable: false,
+  short_description: "",
+  description: "A large white porcelain affair, standing on four brass feet."
+};
+
 Items.Broom = {
   position: "TowerMageQuarters",
   article: "a",

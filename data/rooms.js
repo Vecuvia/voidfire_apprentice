@@ -13,7 +13,7 @@ Rooms.TowerMageQuarters = {
 Rooms.TowerMageBathroom = {
   name: "Second floor - Master's bathroom",
   keywords: ["bathroom"],
-  description: "Your master's bathroom is a large affair, with all the amenities a modern wizard could possibly wish for: toilet, sink, bidet and a large porcelain bathtub. To the west a door leads back to the bedroom.",
+  description: "Your master's bathroom is a large affair, with all the amenities a modern wizard could possibly wish for: toilet, sink, and a large porcelain bathtub. To the west a door leads back to the bedroom.",
   exits: {
     west: "TowerMageQuarters"
   }
@@ -44,7 +44,7 @@ Rooms.TowerFirstFloor = {
 Rooms.TowerYourBedroom = {
   name: "First floor - Your quarters",
   keywords: ["quarters", "bedroom"],
-  description: "Your room is not large, with just enough space for a small bed, wardrobe and desk. To the south you can access the central staircase.",
+  description: "Your room is not large, with just enough space for a small bed and desk. There's a large chest at the foot of the bed. To the south you can access the central staircase.",
   exits: {
     south: "TowerFirstFloor"
   }
@@ -85,6 +85,24 @@ Rooms.TowerOutside = {
   description: "You stand on a chunk of earth, the dark emptiness of the gulf between universes surrounding you on all sides. The Voidfire tower stands to the north.",
   exits: {
     north: "TowerGroundFloor"
+  }
+};
+
+Rooms.CouncilOutside = {
+  name: "Outside the wizard's council",
+  keywords: ["outside", "council"],
+  description: "The building of the wizard's council stands out in the fog. #TODO: complete this",
+  exits: {
+    north: "CouncilCorridor"
+  }
+};
+
+Rooms.CouncilCorridor = {
+  name: "Wizard's council - corridor",
+  keywords: ["corridor"],
+  description: "#TODO",
+  exits: {
+    south: "CouncilOutside"
   }
 };
 
