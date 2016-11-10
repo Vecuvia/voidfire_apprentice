@@ -308,8 +308,8 @@ Commands.push({
     var target = captures[4];
     var book = null;
     for (var item in Items) {
-      if ((in_room(Items[item]) || Items[item].position === game.player) && Items[item].keywords.includes(keyword)) {
-        book = Item[item];
+      if ((in_room(Items[item]) || Items[item].position === game.player) && Items[item].keywords.includes(target)) {
+        book = Items[item];
         break;
       }
     }
@@ -326,6 +326,24 @@ Commands.push({
       }
       out("That's not a book.");
       return;
+    }
+    out("You don't see that here.");
+  }
+});
+
+Commands.push({
+  pattern: "^(read|browse)\\s+(.+)$",
+  execute: function (game, captures) {
+    var target = captures[2];
+    for (var item in Items) {
+      if ((in_room(Items[item]) || Items[item].position === game.player) && Items[item].keywords.includes(target)) {
+        if (Items[item].topics) {
+          out(Items[item].topics[random(0, Items[item].topics.length - 1)].description);
+        } else {
+          out("That's not a book.");
+        }
+        return;
+      }
     }
     out("You don't see that here.");
   }

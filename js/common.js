@@ -34,6 +34,13 @@ Array.prototype.betterJoin = function (middle, last) {
   return string;
 }
 
+//Returns a random value between min and max, included
+function random (min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 //Appends `text` to the `#story` element, after parsing it with marked, 
 // wrapping it with a tag `box` (defaulting to `<div>` if nothing is 
 // specified).
