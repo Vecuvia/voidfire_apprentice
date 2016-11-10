@@ -90,7 +90,7 @@ Items.YourSpellbook = {
   topics: [
     {
       keywords: ["council", "wizard's council"],
-      description: "You penned down a few paragraphs or so about the council.\n\nThe wizard's council was founded about two centuries ago, after the last reality quake broke up and mixed together a dozen universes."
+      description: "You penned down a few paragraphs or so about the council.\n\nThe wizard's council was founded about two centuries ago, after the last reality quake broke up and mixed together a dozen universes. It was originally born as a collaborative attempt to put those universes back together, helping the scattered people go back to their respective homes."
     }
   ]
 };
