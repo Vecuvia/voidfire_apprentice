@@ -78,7 +78,7 @@ Scenes.DeliverTheParcel = {
   each_turn: function (game) {}
 };
 
-Scenes.DummyScene = {
+/*Scenes.DummyScene = {
   running: false,
   ran: 0,
   start: always_false,
@@ -86,4 +86,4 @@ Scenes.DummyScene = {
   end: always_false,
   on_end: no_op,
   each_turn: no_op
-};
+};*/

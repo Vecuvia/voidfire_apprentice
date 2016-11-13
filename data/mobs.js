@@ -94,10 +94,22 @@ Mobs.Wizard = {
   ]
 };
 
-Mobs.DummyMob = {
+/*Mobs.DummyMob = {
   position: "DummyRoom",
   name: "dummy mob",
   keywords: ["dummy", "mob", "dummy mob"],
+  pronoun: "it",
   short_description: "A dummy mob is standing here.",
-  description: "It's just a dummy mob."
-};
+  description: "It's just a dummy mob.",
+  topics: [],
+  conversation: [
+    {
+      name: "topic-name",
+      description: "something about a topic",
+      keywords: ["topic", "something", "what about the topic"],
+      check: always_true,
+      first_time: function (game) {},
+      following: function (game) {}
+    }
+  ]
+};*/

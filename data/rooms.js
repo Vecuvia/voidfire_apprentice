@@ -106,9 +106,9 @@ Rooms.CouncilCorridor = {
   }
 };
 
-Rooms.DummyRoom = {
+/*Rooms.DummyRoom = {
   name: "Dummy room",
   keywords: ["dummy", "dummy room"],
   description: "It's a room full of dummies!",
   exits: {}
-};
+};*/
