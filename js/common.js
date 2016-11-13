@@ -129,7 +129,7 @@ function move_mob (mob, direction) {
     }
     mob.position = Rooms[mob.position].exits[direction];
     if (visible(mob)) {
-      out(mob.article.capitalizeFirstLetter() + mob.name + " comes from the " + DirectionOpposites[direction] + ".");
+      out(mob.article.capitalizeFirstLetter() + mob.name + " comes from " + (["north", "south", "east", "west"].includes(direction) ? "the " : "") + DirectionOpposites[direction] + ".");
     }
   }
 }

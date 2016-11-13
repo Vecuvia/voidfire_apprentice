@@ -250,7 +250,7 @@ Commands.push({
   execute: function (game, captures) {
     var doorway = captures[2];
     for (var item in Items) {
-      if (visible(Items[item]) && Items[item].keywords.includes(examined)) {
+      if (visible(Items[item]) && Items[item].keywords.includes(doorway)) {
         if (Items[item].doorway && hook("pre_moving")) {
           out("You go through " + Items[item].article + " " + Items[item].name + ".");
           goto(game, Items[item].doorway);
@@ -331,6 +331,7 @@ Commands.push({
   }
 });
 
+//Read/browse command
 Commands.push({
   pattern: "^(read|browse)\\s+(.+)$",
   execute: function (game, captures) {

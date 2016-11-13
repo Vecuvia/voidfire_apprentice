@@ -71,7 +71,7 @@ Items.YourDesk = {
   position: "TowerYourBedroom",
   article: "your",
   name: "desk",
-  keywords: ["your desk", "desk", "table"],
+  keywords: ["my desk", "desk", "table"],
   scenery: true,
   gettable: false,
   short_description: "",
@@ -82,7 +82,7 @@ Items.YourSpellbook = {
   position: "YourDesk",
   article: "your",
   name: "spellbook",
-  keywords: ["your spellbook", "spellbook", "book"],
+  keywords: ["my spellbook", "spellbook", "book"],
   scenery: false,
   gettable: true,
   short_description: "You left your spellbook here.",
@@ -117,7 +117,19 @@ Items.Parcel = {
   description: "The parcel is not large, and tightly wrapped. You don't know what is inside."
 };
 
-Items.DummyItem = {
+Items.BlackMirror = {
+  position: "TowerLibrary",
+  article: "a",
+  name: "black mirror",
+  keywords: ["black mirror", "mirror"],
+  scenery: false,
+  gettable: false,
+  short_description: "There's a large black mirror floating in the middle of the room.",
+  description: "It looks like it was fashioned out of a single piece of obsidian, and it floats in midair without any apparent means of support.",
+  doorway: "CouncilOutside"
+};
+
+/*Items.DummyItem = {
   position: "DummyRoom",
   article: "a",
   name: "dummy item",
@@ -126,4 +138,4 @@ Items.DummyItem = {
   gettable: true,
   short_description: "There's a dummy item here.",
   description: "It's simply a dummy item."
-};
+};*/
