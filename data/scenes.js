@@ -4,7 +4,13 @@ Scenes.CleaningUp = {
   running: true,
   ran: 0,
   start: always_false,
-  on_start: no_op,
+  on_start: function (game) {
+    register_hook("pre_moving", "stop_mirroring", function (game, direction) {
+      if (direction === "BlackMirror") {
+        return false;
+      }
+    });
+  },
   end: function (game) {
     return Scenes.Familiar.start(game);
   },
@@ -70,7 +76,9 @@ Scenes.DeliverTheParcel = {
   start: function (game) {
     return Items.Parcel.location === game.player;
   },
-  on_start: function (game) {},
+  on_start: function (game) {
+    unregister_hook("pre_moving", "stop_mirroring");
+  },
   end: function (game) {
     return Item.Parcel.location === "CouncilInnerChamber";
   },

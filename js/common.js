@@ -273,7 +273,7 @@ function unregister_hook (hook, name) {
 function hook (hook, args) {
   var allows = true;
   for (var i = 0; i < Hooks[hook].length; i++) {
-    if (Hooks[hook][i].callback(game, args)) {
+    if (Hooks[hook][i].callback(game, args) === false) {
       allows = false;
     }
   }

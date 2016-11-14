@@ -251,7 +251,7 @@ Commands.push({
     var doorway = captures[2];
     for (var item in Items) {
       if (visible(Items[item]) && Items[item].keywords.includes(doorway)) {
-        if (Items[item].doorway && hook("pre_moving")) {
+        if (Items[item].doorway && hook("pre_moving", item)) {
           out("You go through " + Items[item].article + " " + Items[item].name + ".");
           goto(game, Items[item].doorway);
           hook("post_moving");
