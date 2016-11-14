@@ -1,9 +1,11 @@
 var Scenes = {};
 
 Scenes.CleaningUp = {
-  running: true,
+  running: false,
   ran: 0,
-  start: always_false,
+  start: function (game) {
+    return game.turns === 0;
+  },
   on_start: function (game) {
     register_hook("pre_moving", "stop_mirroring", function (game, direction) {
       if (direction === "BlackMirror") {

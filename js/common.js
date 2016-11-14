@@ -69,6 +69,7 @@ function show_banner (game) {
 //Shows the game introduction
 function introduction (game) {
   out(GAME_INTRODUCTION);
+  scenes_tick(game);
   look(game);
   update_statusbar(game);
 }
@@ -165,10 +166,9 @@ function find_item (keyword) {
   return null;
 }
 
-//Makes the world tick
-function turn_passes (game) {
-  game.turns += 1;
-  //Handle scene start, end and, if ongoing, invoke their `each_turn` function
+//Make the scenes tick - iterate through them, start and end them as needed,
+// and invoke their `each_turn` function.
+function scenes_tick (game) {
   for (var scene in Scenes) {
     if (Scenes[scene].running) {
       Scenes[scene].each_turn(game);
@@ -184,6 +184,13 @@ function turn_passes (game) {
       }
     }
   }
+}
+
+//Makes the world tick
+function turn_passes (game) {
+  game.turns += 1;
+  //Handle scene start, end and, if ongoing, invoke their `each_turn` function
+  scenes_tick(game);
   //Iterate through all the items and mobs in the game world and, if they
   // have an `each_turn` function make them tick.
   for (var item in Items) {
